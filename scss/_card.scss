@@ -1,7 +1,15 @@
+.card {
+    border-radius: 20px;
+    background: #A8DADC;
+    box-shadow: -5px 5px 25px #435758,
+        5px -5px 25px #ffffff;
 
-    .card {
-        border-radius: 20px;
-        background: #A8DADC;
-        box-shadow:  -5px 5px 25px #435758,
-                     5px -5px 25px #ffffff;
+    .card-title{
+        color: $darkblue;
     }
+
+}
+
+.project {
+    cursor: pointer;
+}

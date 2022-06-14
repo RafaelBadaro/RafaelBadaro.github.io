@@ -1,0 +1,10 @@
+#aboutme{
+    background-color: $darkblue; /* For browsers that do not support gradients */
+    background-image: linear-gradient($blue, $light_blue);
+}
+
+.selfie{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}

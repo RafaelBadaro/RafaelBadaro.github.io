@@ -7,10 +7,6 @@ html {
 
 .vh {
     height: 100vh;
-
-    // @include media-breakpoint-down(md) {
-    //     height: auto;
-    // }
 }
 
 body {
@@ -36,5 +32,18 @@ body {
         }
     }
 
+    #hello_first {
+        transition: opacity 1s;
+        margin: 0;
+    }
+    #hello_second {
+        transition: opacity 1s;
+        margin: 0;
+    }
+
+    #typing{
+        border-right: 1px solid $white;
+        padding-right: 4px;
+    }
 
 }

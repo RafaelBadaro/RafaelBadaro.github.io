@@ -1,7 +1,7 @@
 const typing = document.getElementById('typing');
 let i = 0;
 const speed = 300;
-const words = ['coffee', 'beans', 'grinding'];
+const words = ['software development', 'bad jokes', 'projects', 'inspiration'];
 let word = words[0];
 let y = word.length;
 function typeWriter() {
@@ -25,3 +25,33 @@ function typeWriter() {
     }
 }
 setInterval(typeWriter, speed);
+
+const hello_first = document.getElementById('hello_first');
+const hello_second = document.getElementById('hello_second');
+const languages = ['Olá!', 'Hello!', 'Dag!', 'Hola!', 'Bonjour!', '你好!']
+let language = languages[0];
+hello_first.innerText = language;
+const interval = 2000; // 2 seconds
+function sayHello() {
+    const rand = Math.floor(Math.random() * languages.length);
+    if (languages[rand] !== language) {
+        language = languages[rand];
+        if (hello_first.innerText != '') {
+            hello_second.innerText = language;
+            hello_second.style.opacity = 1;
+
+            hello_first.innerText = '';
+            hello_first.style.opacity = 0;
+        } else {
+            hello_first.innerText = language;
+            hello_first.style.opacity = 1;
+
+            hello_second.innerText = '';
+            hello_second.style.opacity = 0;
+        }
+
+    }
+}
+setInterval(sayHello, interval);
+
+

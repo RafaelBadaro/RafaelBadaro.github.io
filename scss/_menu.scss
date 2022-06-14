@@ -1,0 +1,27 @@
+
+.list-group-item {
+  color: white;
+  background-color: $burlywood;
+  border: 1px solid $almond;
+  padding-left: 0;
+}
+
+h1, h3, .modal-title, .btn-modal {
+  color: white;
+}
+
+
+.accordion-button {
+  color: white;
+  &:not(.collapsed){
+    color: white;
+  }
+  &:focus{
+    box-shadow: none;
+  }
+}
+
+
+.btn-modal {
+  border-radius: 15px;
+}

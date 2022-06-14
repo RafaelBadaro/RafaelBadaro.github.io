@@ -1,0 +1,18 @@
+.vh{
+  height: 100vh;
+  @include media-breakpoint-down(md) {
+    height: auto;
+  }
+}
+
+.hide{
+  opacity:0;
+}
+
+.reveal{
+  transition: all 3s;
+}
+
+.card{
+  border: none;
+}

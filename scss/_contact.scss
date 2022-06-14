@@ -1,0 +1,28 @@
+
+h1,h2{
+  color: white;
+}
+
+.card{
+  background-color: $burlywood;
+  border: none;
+  color:white;
+  height: 100%;
+  .table{
+    color: white;
+  }
+}
+
+form{
+  color: white;
+  .form-group{
+    text-align: left;
+  }
+}
+
+.image-show {
+  display: none;
+  @include media-breakpoint-down(md) {
+    display: block;
+  }
+}

@@ -1,0 +1,17 @@
+// override BS5 variables and custom variables mixins
+
+$fontstack: 'Raleway';
+$red: #E63946;
+$white: #F1FAEE;
+$light_blue: #A8DADC;
+$blue: #457B9D;
+$darkblue: #1D3557;
+
+$theme-colors: map-merge(
+  $theme-colors,
+  (
+    'primary': $blue,
+    'secondary': $light_blue
+  )
+);
+

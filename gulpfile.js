@@ -31,15 +31,18 @@ gulp.task('sass', () =>
 
 gulp.task('browser-sync', () => {
     browserSync.init({
-        startPath: 'index.html',
-        port: 7777,
-
-        ui: {
-            port: 7779,
-        },
+        server: {
+            startPath: 'index.html',
+            port: 7777,
+            ui: {
+                port: 7779,
+            },
+        }
     });
     gulp.watch('./scss/**/*.scss', gulp.series('sass'));
-    gulp.watch('./src/**/*.{html,css,js}').on('change', browserSync.reload);
+    gulp.watch('index.html').on('change', browserSync.reload);
+    gulp.watch('*/*.js').on('change', browserSync.reload);
+    gulp.watch('*/*.css').on('change', browserSync.reload);
 });
 
 gulp.task('build', gulp.series('sass'));

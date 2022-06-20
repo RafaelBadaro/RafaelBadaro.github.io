@@ -55,3 +55,14 @@ function sayHello() {
 setInterval(sayHello, interval);
 
 
+let navbarToggler = document.getElementById('navbar-toggler');
+const squares = document.getElementById('squares');
+navbarToggler.addEventListener('click', () => {
+    navbarToggler = document.getElementById('navbar-toggler')
+    if(navbarToggler.classList.contains('collapsed')){
+        squares.style.marginTop = '3.5rem';
+    }else{
+        squares.style.marginTop = '14rem';
+    }
+});
+

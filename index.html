@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Portfolio</title>
+  <title>projects</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@500&display=swap" rel="stylesheet">
@@ -14,13 +14,11 @@
   <script src="https://kit.fontawesome.com/82722ee4df.js" crossorigin="anonymous"></script>
 </head>
 
-<body class="bg-secondary">
-  <nav class="navbar navbar-expand-lg bg-primary">
+<body>
+  <nav class="navbar navbar-expand-lg">
     <div class="container-fluid px-5">
-      <a class="navbar-brand" href="#header">
-        Rafael Badaró
-      </a>
-      <button id="navbar-toggler" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+      <button id="navbar-toggler" class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
@@ -38,177 +36,207 @@
             </a>
           </li>
           <li>
-            <a class="nav-link active" href="#portfolio">
-              <span class="d-none d-lg-block d-xl-none">Portfolio</span>
-              <span class="d-block d-sm-block d-md-block d-lg-none">Portfolio</span>
+            <a class="nav-link active" href="#projects">
+              <span class="d-none d-lg-block d-xl-none">Projects</span>
+              <span class="d-block d-sm-block d-md-block d-lg-none">Projects</span>
             </a>
           </li>
           <li>
-            <a href="assets/en_cv.pdf" class="btn btn-secondary" download>Download CV</a>
+            <a href="assets/en_cv.pdf" class="btn btn-mid-to-dark-blue" download>Download CV</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-  <header id="header" class="bg-primary area">
+  <header id="header">
     <div class="vh text-center container d-flex align-items-center">
       <div>
         <div class="mb-3">
           <h1 class="fs-1" id="hello_first"></h1>
           <h1 class="fs-1" id="hello_second"></h1>
         </div>
-        <h2>You came across my humble portfolio! Feel free to take a look and check out my social media!</h2>
-        <h2> Here you will find <span id="typing"></span></h2>
+        <section class="mb-4">
+          <h2>Welcome! You found my portifolio! I'm Rafael nice to meet ya ;)
+            make yourself at home and leave
+            a high five if you feel like it!</h2>
+          <h2> Here you will find my <span id="typing"></span></h2>
+        </section>
+        <section class="mt-4 d-flex justify-content-center align-items-center">
+          <button type="button" class="btn btn-mid-to-dark-blue">
+            Click here for High five!
+          </button>
+
+          <div class="ms-3">
+            <label>
+              High fives:
+            </label>
+            <label>
+              xxx
+            </label>
+          </div>
+
+        </section>
       </div>
-      <ul id="squares">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
     </div>
   </header>
   <main>
-    <section id="aboutme" class="vh">
-      <div class="container">
-        <div class="text-center">
-          <h1 class="fs-1">Who am I?</h1>
-          <h4 class="fs-6">Glad you asked...</h4>
-        </div>
+    <section id="aboutme">
+      <div class="container d-flex align-items-center flex-column">
 
-        <div class="container mt-3">
-          <div class="row text-center">
-            <div class="col-sm mt-4">
-              <div class="d-flex flex-column align-items-center">
-                <img src="assets/img/eu_oculos_escuro.jpeg" class="selfie img-fluid" alt="me with sunglasses">
-                <span class="mt-3">This is me!</span>
-              </div>
-            </div>
-            <div class="col-sm mt-4">
-              <p class="fs-4 text-darkblue">My name is Rafael and I'm from Belo Horizonte, Brazil.
-                I'm a Software Engineer and I have worked with software development for 3 years.
-                I have a small dog name Lola and my favourite ice cream flavour is strawberry
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="portfolio" class="vh text-center container pt-3 bg-secondary">
-      <h1>PORTFOLIO</h1>
-      <div class="container">
-        <div class="row">
-          <!--Project-->
-          <div class="col-sm mt-4">
-            <!--Card trigger modal -->
-            <div data-bs-toggle="modal" data-bs-target="#project1">
-              <div class="card project">
-                <div class="card-body">
-                  <h5 class="card-title">Sueca - Card Drinking Game</h5>
+        <div class="card bg-card-bg" style="width: 28rem;">
+          <img src="assets/img/eu_oculos_escuro.jpeg" class="selfie img-fluid mx-auto my-auto" alt="me with sunglasses">
+          <div class="card-body">
+            <p class="card-text">
+            <section id="infos container">
+              <div class="info d-flex justify-content-between">
+                <label>Name: </label>
+                <div>
+                  <label id="click_me_info_name" class="text-decoration-underline hand-cursor"
+                    onclick="enableInfoElement('click_me_info_name', 'info_name')">
+                    Click to reveal
+                  </label>
+                  <label id="info_name" class="display-none">Rafael Badaró</label>
                 </div>
               </div>
-            </div>
-            <!-- Modal -->
-            <div class="modal fade bg-secondary" id="project1" tabindex="-1">
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content bg-primary">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="project1Label">Sueca - Card Drinking Game</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                  </div>
-                  <div class="modal-body">
-                    <p>Sueca is a Card Game to play with your friends,
-                      each card drawn it's something that one person in the circle has to do otherwise drink</p>
-                    <a class="text-white" href="https://vue-sueca.herokuapp.com/">Live Website</a>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  </div>
+              <div class="info d-flex justify-content-between">
+                <label>Country: </label>
+                <div>
+                  <label id="click_me_info_country" class="text-decoration-underline hand-cursor"
+                    onclick="enableInfoElement('click_me_info_country', 'info_country')">
+                    Click to reveal
+                  </label>
+                  <label id="info_country" class="display-none">Brazil</label>
                 </div>
               </div>
-            </div>
-          </div>
-          <!--Project-->
-          <div class="col-sm mt-4">
-            <!--Card trigger modal -->
-            <div data-bs-toggle="modal" data-bs-target="#project2">
-              <div class="card project">
-                <div class="card-body">
-                  <h5 class="card-title">Gaudium</h5>
+              <div class="info d-flex justify-content-between">
+                <label>Age: </label>
+                <div>
+                  <label id="click_me_info_age" class="text-decoration-underline hand-cursor"
+                    onclick="enableInfoElement('click_me_info_age', 'info_age')">
+                    Click to reveal
+                  </label>
+                  <label id="info_age" class="display-none">25</label>
                 </div>
               </div>
-            </div>
-            <!-- Modal -->
-            <div class="modal fade bg-secondary" id="project2" tabindex="-1">
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content bg-primary">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="project2Label">Gaudium</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                  </div>
-                  <div class="modal-body">
-                    <p>Gaudium is a minimum viable product (MVP) for the Ernst&Young (EY) Innovation Tech Challenge
-                      2020, is supposed to simulate a Mobile App. </p>
-                    <a class="text-white" href="https://gaudium-app.herokuapp.com/">Live Website </a>
-                    <br>
-                    <a class="text-white" href="https://github.com/RafaelBadaro/Gaudium">Github Repo</a>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--Project-->
-          <div class="col-sm mt-4">
-            <!--Card trigger modal -->
-            <div data-bs-toggle="modal" data-bs-target="#project3">
-              <div class="card project">
-                <div class="card-body">
-                  <h5 class="card-title">Dogtour</h5>
-                </div>
-              </div>
-            </div>
-            <!-- Modal -->
-            <div class="modal fade bg-secondary" id="project3" tabindex="-1">
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content bg-primary">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="project3Label">Dogtour</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                  </div>
-                  <div class="modal-body">
-                    <p>Dogtour was a App created for a course during my graduation on Software Engineering,
-                      the purpose of the App is to facilitate the process of finding a person to walk your dog</p>
-                    <a class="text-white" href="https://www.youtube.com/watch?v=sO8AoBymVSE">Video demo</a>
-                    <br>
-                    <a class="text-white" href="https://github.com/RafaelBadaro/dogtour">Github Repo - FrontEnd</a>
-                    <br>
-                    <a class="text-white" href="https://github.com/RafaelBadaro/dogtour-backend">Github Repo -
-                      BackEnd</a>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  </div>
-                </div>
-              </div>
-            </div>
+            </section>
+            </p>
           </div>
         </div>
       </div>
     </section>
-    <!-- Pensando em mudar para algo tipo My recommendations -->
-    <!-- <section id="cv">
 
-    </section> -->
+    <section id="recommendations">
+      <div class="vh container pt-3">
+        <h1>Recommendations</h1>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="vh text-center container pt-3">
+        <h1>Projects</h1>
+        <div class="container">
+          <div class="row">
+            <!--Project-->
+            <div class="col-sm mt-4">
+              <!--Card trigger modal -->
+              <div data-bs-toggle="modal" data-bs-target="#project1">
+                <div class="card project">
+                  <div class="card-body">
+                    <h5 class="card-title">Sueca - Card Drinking Game</h5>
+                  </div>
+                </div>
+              </div>
+              <!-- Modal -->
+              <div class="modal fade bg-secondary" id="project1" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content bg-primary">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="project1Label">Sueca - Card Drinking Game</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Sueca is a Card Game to play with your friends,
+                        each card drawn it's something that one person in the circle has to do otherwise drink</p>
+                      <a class="text-white" href="https://vue-sueca.herokuapp.com/">Live Website</a>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--Project-->
+            <div class="col-sm mt-4">
+              <!--Card trigger modal -->
+              <div data-bs-toggle="modal" data-bs-target="#project2">
+                <div class="card project">
+                  <div class="card-body">
+                    <h5 class="card-title">Gaudium</h5>
+                  </div>
+                </div>
+              </div>
+              <!-- Modal -->
+              <div class="modal fade bg-secondary" id="project2" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content bg-primary">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="project2Label">Gaudium</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Gaudium is a minimum viable product (MVP) for the Ernst&Young (EY) Innovation Tech Challenge
+                        2020, is supposed to simulate a Mobile App. </p>
+                      <a class="text-white" href="https://gaudium-app.herokuapp.com/">Live Website </a>
+                      <br>
+                      <a class="text-white" href="https://github.com/RafaelBadaro/Gaudium">Github Repo</a>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--Project-->
+            <div class="col-sm mt-4">
+              <!--Card trigger modal -->
+              <div data-bs-toggle="modal" data-bs-target="#project3">
+                <div class="card project">
+                  <div class="card-body">
+                    <h5 class="card-title">Dogtour</h5>
+                  </div>
+                </div>
+              </div>
+              <!-- Modal -->
+              <div class="modal fade bg-secondary" id="project3" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content bg-primary">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="project3Label">Dogtour</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Dogtour was a App created for a course during my graduation on Software Engineering,
+                        the purpose of the App is to facilitate the process of finding a person to walk your dog</p>
+                      <a class="text-white" href="https://www.youtube.com/watch?v=sO8AoBymVSE">Video demo</a>
+                      <br>
+                      <a class="text-white" href="https://github.com/RafaelBadaro/dogtour">Github Repo - FrontEnd</a>
+                      <br>
+                      <a class="text-white" href="https://github.com/RafaelBadaro/dogtour-backend">Github Repo -
+                        BackEnd</a>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>  
   </main>
 
   <script src="js/scripts.js"></script>
@@ -219,7 +247,7 @@
     document.write("<script async src='http://HOST:7777/browser-sync/browser-sync-client.js?v=2.27.10'><\/script>".replace("HOST", location.hostname));
     //]]></script>
 </body>
-<footer class="bg-primary d-flex justify-content-between align-items-center px-3">
+<footer class="d-flex justify-content-between align-items-center px-3">
   <div class="socials">
     <a href="https://www.instagram.com/rafabadaro" class="fa-brands fa-instagram">
     </a>
@@ -227,7 +255,7 @@
     </a>
   </div>
   <div>
-    <a href="assets/en_cv.pdf" class="btn btn-secondary" download>Download CV</a>
+    <a href="assets/en_cv.pdf" class="btn btn-mid-to-dark-blue" download>Download CV</a>
   </div>
 </footer>
 

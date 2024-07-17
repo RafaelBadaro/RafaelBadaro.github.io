@@ -10,11 +10,16 @@ html {
 }
 
 body {
-    color: $light_blue;
+    color: $white;
     font-family: $fontstack;
+    background: linear-gradient(180deg, hsla(236, 24%, 49%, 1) 0%, hsla(268, 17%, 59%, 1) 25%, hsla(353, 20%, 64%, 1) 50%, hsla(23, 89%, 79%, 1) 75%, hsla(33, 100%, 83%, 1) 100%);
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 
     h1 {
-        color: $darkblue;
+        color: $white;
     }
 
     .navbar {
@@ -23,11 +28,11 @@ body {
         }
 
         .navbar-brand {
-            color: $light_blue;
+            color: $white;
         }
 
         .nav-link.active {
-            color: $light_blue;
+            color: $white;
         }
     }
 
@@ -35,14 +40,38 @@ body {
         transition: opacity 1s;
         margin: 0;
     }
+
     #hello_second {
         transition: opacity 1s;
         margin: 0;
     }
 
-    #typing{
+    #typing {
         border-right: 1px solid $white;
         padding-right: 4px;
+    }
+
+    // This was created because boostrap usese the !important and I didnt figure out how to override it through javascript
+    .display-none {
+        display: none;
+    }
+
+    .hand-cursor {
+        cursor: pointer;
+    }
+
+    .fade-out {
+        animation: fadeOut 1s forwards;
+    }
+
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+        }
     }
 
 }

@@ -36,6 +36,12 @@
             </a>
           </li>
           <li>
+            <a class="nav-link active" href="#recommendations">
+              <span class="d-none d-lg-block d-xl-none">Recommendations</span>
+              <span class="d-block d-sm-block d-md-block d-lg-none">Recommendations</span>
+            </a>
+          </li>
+          <li>
             <a class="nav-link active" href="#projects">
               <span class="d-none d-lg-block d-xl-none">Projects</span>
               <span class="d-block d-sm-block d-md-block d-lg-none">Projects</span>
@@ -71,7 +77,7 @@
               High fives:
             </label>
             <label>
-              xxx
+              0
             </label>
           </div>
 
@@ -83,7 +89,7 @@
     <section id="aboutme">
       <div class="container d-flex align-items-center flex-column">
 
-        <div class="card bg-card-bg" style="width: 28rem;">
+        <div class="card bg-card-bg" style="width: 20rem;">
           <img src="assets/img/eu_oculos_escuro.jpeg" class="selfie img-fluid mx-auto my-auto" alt="me with sunglasses">
           <div class="card-body">
             <p class="card-text">
@@ -126,15 +132,53 @@
     </section>
 
     <section id="recommendations">
-      <div class="vh container pt-3">
+      <div class="container pt-3">
         <h1>Recommendations</h1>
+
+        <div class="container text-center mt-3">
+
+          <div class="row">
+            <div class="col-sm d-flex justify-content-center my-4">
+              <div class="card bg-card-bg" style="width: 18rem;">
+                <div class="card-body">
+                  <h4 class="card-text">The best!!!</h4>
+                  <h5 class="card-title">Flavia</h5>
+                  <h7 class="card-subtitle mb-2 text-body-secondary">- Mom</h7>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm d-flex justify-content-center my-4">
+              <div class="card bg-card-bg" style="width: 18rem;">
+                <div class="card-body">
+                  <h4 class="card-text">Love him so much!</h4>
+                  <h5 class="card-title">Laura</h5>
+                  <h7 class="card-subtitle mb-2 text-body-secondary">- Wife</h7>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm d-flex justify-content-center my-4">
+              <div class="card bg-card-bg" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-text">No I'm not saying any quote to go on your stupid portifolio</h5>
+                  <h6 class="card-title">Joao</h6>
+                  <h8 class="card-subtitle mb-2 text-body-secondary">- Cousin</h8>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <section id="projects">
-      <div class="vh text-center container pt-3">
+      <div class="text-center container pt-3">
         <h1>Projects</h1>
+        <h4>You can find all of my projects on my <a href="https://github.com/RafaelBadaro">Github</a></h4>
         <div class="container">
+
+          <!--Row-->
           <div class="row">
             <!--Project-->
             <div class="col-sm mt-4">
@@ -157,7 +201,7 @@
                     <div class="modal-body">
                       <p>Sueca is a Card Game to play with your friends,
                         each card drawn it's something that one person in the circle has to do otherwise drink</p>
-                      <a class="text-white" href="https://vue-sueca.herokuapp.com/">Live Website</a>
+                      <a class="text-white" href="">Live Website</a>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -187,9 +231,8 @@
                     <div class="modal-body">
                       <p>Gaudium is a minimum viable product (MVP) for the Ernst&Young (EY) Innovation Tech Challenge
                         2020, is supposed to simulate a Mobile App. </p>
-                      <a class="text-white" href="https://gaudium-app.herokuapp.com/">Live Website </a>
-                      <br>
-                      <a class="text-white" href="https://github.com/RafaelBadaro/Gaudium">Github Repo</a>
+                      <a class="text-white" target=”_blank” href="https://github.com/RafaelBadaro/Gaudium">Github
+                        Repo</a>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -219,11 +262,14 @@
                     <div class="modal-body">
                       <p>Dogtour was a App created for a course during my graduation on Software Engineering,
                         the purpose of the App is to facilitate the process of finding a person to walk your dog</p>
-                      <a class="text-white" href="https://www.youtube.com/watch?v=sO8AoBymVSE">Video demo</a>
+                      <a class="text-white" target=”_blank” href="https://www.youtube.com/watch?v=sO8AoBymVSE">Video
+                        demo</a>
                       <br>
-                      <a class="text-white" href="https://github.com/RafaelBadaro/dogtour">Github Repo - FrontEnd</a>
+                      <a class="text-white" target=”_blank” href="https://github.com/RafaelBadaro/dogtour">Github Repo -
+                        FrontEnd</a>
                       <br>
-                      <a class="text-white" href="https://github.com/RafaelBadaro/dogtour-backend">Github Repo -
+                      <a class="text-white" target=”_blank”
+                        href="https://github.com/RafaelBadaro/dogtour-backend">Github Repo -
                         BackEnd</a>
                     </div>
                     <div class="modal-footer">
@@ -233,10 +279,221 @@
                 </div>
               </div>
             </div>
+            <!--Project-->
+            <div class="col-sm mt-4">
+              <!--Card trigger modal -->
+              <div data-bs-toggle="modal" data-bs-target="#project4">
+                <div class="card project">
+                  <div class="card-body">
+                    <h5 class="card-title">Metrics Conversion</h5>
+                  </div>
+                </div>
+              </div>
+              <!-- Modal -->
+              <div class="modal fade bg-secondary" id="project4" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content bg-primary">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="project4Label">Metrics Conversion</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>This is a small project in Swift to convert metrics from the imperial to the metric system</p>
+                      <a class="text-white" target=”_blank”
+                        href="https://github.com/RafaelBadaro/metrics-conversion/tree/main">
+                        Github Repo
+                      </a>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--Project-->
+            <div class="col-sm mt-4">
+              <!--Card trigger modal -->
+              <div data-bs-toggle="modal" data-bs-target="#project5">
+                <div class="card project">
+                  <div class="card-body">
+                    <h5 class="card-title">Weather Demo</h5>
+                  </div>
+                </div>
+              </div>
+              <!-- Modal -->
+              <div class="modal fade bg-secondary" id="project5" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content bg-primary">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="project5Label">Weather Demo</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>One of the first apps I created to learn Swift and iOS, it's a simply copy of the Weather app
+                        iphone uses</p>
+                      <a class="text-white" target=”_blank” href="https://github.com/RafaelBadaro/WeatherDemo">
+                        Github Repo
+                      </a>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+
+          <!--Row-->
+          <div class="row">
+            <!--Project-->
+            <div class="col-sm mt-4">
+              <!--Card trigger modal -->
+              <div data-bs-toggle="modal" data-bs-target="#project6">
+                <div class="card project">
+                  <div class="card-body">
+                    <h5 class="card-title">Santander Dev Week 2023 - iOS</h5>
+                  </div>
+                </div>
+              </div>
+              <!-- Modal -->
+              <div class="modal fade bg-secondary" id="project6" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content bg-primary">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="project6Label">Santander Dev Week 2023 - iOS</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>I got selected from the Santander Bank to receive a free iOS course on the DIO platform</p>
+                      <a class="text-white" target=”_blank”
+                        href="https://github.com/RafaelBadaro/santander-dev-week-2023-ios">
+                        Github Repo
+                      </a>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--Project-->
+            <div class="col-sm mt-4">
+              <!--Card trigger modal -->
+              <div data-bs-toggle="modal" data-bs-target="#project7">
+                <div class="card project">
+                  <div class="card-body">
+                    <h5 class="card-title">ExchangeRates</h5>
+                  </div>
+                </div>
+              </div>
+              <!-- Modal -->
+              <div class="modal fade bg-secondary" id="project7" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content bg-primary">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="project7Label">ExchangeRates</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>An app to check rates from currencies using the
+                        <a class="text-white" target="_blank" href="https://exchangeratesapi.io"></a>
+                        ExchangeRates API
+                      </p>
+                      <a class="text-white" target=”_blank” href="https://github.com/RafaelBadaro/ExchangeRates">
+                        Github Repo
+                      </a>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--Project-->
+            <div class="col-sm mt-4">
+              <!--Card trigger modal -->
+              <div data-bs-toggle="modal" data-bs-target="#project8">
+                <div class="card project">
+                  <div class="card-body">
+                    <h5 class="card-title">Qual é o número? (What's the number?)</h5>
+                  </div>
+                </div>
+              </div>
+              <!-- Modal -->
+              <div class="modal fade bg-secondary" id="project8" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content bg-primary">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="project8Label">Qual é o número? (What's the number?)</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>"Qual é o número" literally translates
+                        to "What's the number",
+                        it's a game of guessing a random number.I created it as a coding test for joining
+                        <a class="text-white" target="_blank" href="https://www.letras.mus.br">
+                          Letras.mus
+                        </a>
+                      </p>
+                      <a class="text-white" target=”_blank” href="https://github.com/RafaelBadaro/qual_e_o_numero">
+                        Github Repo
+                      </a>
+                      <br>
+                      <a class="text-white" target=”_blank” href="https://qualonumero.netlify.app">
+                        Website link
+                      </a>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--Project-->
+            <div class="col-sm mt-4">
+              <!--Card trigger modal -->
+              <div data-bs-toggle="modal" data-bs-target="#project9">
+                <div class="card project">
+                  <div class="card-body">
+                    <h5 class="card-title">Undergraduate thesis (TCC)</h5>
+                  </div>
+                </div>
+              </div>
+              <!-- Modal -->
+              <div class="modal fade bg-secondary" id="project9" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content bg-primary">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="project9Label">Undergraduate thesis (TCC)</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>This is the paper for my Undergraduate thesis (Trabalho de conclusão de curso)</p>
+                      <a class="text-white" target=”_blank”
+                        href="http://bib.pucminas.br:8080/pergamumweb/vinculos/0000a4/0000a461.pdf">
+                        Link to PDF
+                      </a>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
-    </section>  
+    </section>
   </main>
 
   <script src="js/scripts.js"></script>
@@ -252,6 +509,8 @@
     <a href="https://www.instagram.com/rafabadaro" class="fa-brands fa-instagram">
     </a>
     <a href="https://www.linkedin.com/in/rafael-badaro" class="fa-brands fa-linkedin">
+    </a>
+    <a href="https://github.com/RafaelBadaro" class="fa-brands fa-github">
     </a>
   </div>
   <div>

@@ -1,3 +1,57 @@
+
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js';
+import { getFirestore, doc, getDoc, updateDoc } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js';
+
+
+// Using webpack, I need to run: node_modules/.bin/webpack --entry ./js/scripts.js -o dist
+const firebaseConfig = {
+  apiKey: "AIzaSyAnPyoCqefKHhdHhT6G3KGqzrksAbJ5rwI",
+  authDomain: "portifolio-d76ea.firebaseapp.com",
+  projectId: "portifolio-d76ea",
+  storageBucket: "portifolio-d76ea.appspot.com",
+  messagingSenderId: "709259691045",
+  appId: "1:709259691045:web:4dfe24e3da4df7d747ebcc",
+  measurementId: "G-5BN878J8WF"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+let highFiveCount = 0
+
+const highFivesDocRef = doc(db, "high-fives", "high-five-counter");
+
+// TODO - use the real time functionality from firestore: https://firebase.google.com/docs/firestore/query-data/listen?hl=pt&authuser=0
+async function setHighFiveCount(){
+    const docSnap = await getDoc(highFivesDocRef);
+    highFiveCount = docSnap.data().highFiveCount
+
+    // Update UI
+    let labelHighFiveCount = document.getElementById('label_high_five_count')
+    labelHighFiveCount.innerText = highFiveCount
+}
+
+setHighFiveCount()
+setInterval(setHighFiveCount, 10000) // refreshes every 10 seconds
+
+async function highFive(){
+    // Update the DB
+    highFiveCount += 1
+    await updateDoc(highFivesDocRef, {
+        highFiveCount: highFiveCount
+    });
+    
+    // Update the UI
+    let labelHighFiveCount = document.getElementById('label_high_five_count')
+    let btnHighFive = document.getElementById('btn_high_five')
+    labelHighFiveCount.innerText = highFiveCount 
+    btnHighFive.disabled = true
+}
+
+document.getElementById('btn_high_five').addEventListener('click', () => {
+    highFive();
+});
+
 const typing = document.getElementById('typing');
 const words = ['info.', 'recommendations.', 'projects.'];
 let word = words[0];
@@ -91,7 +145,6 @@ navbarToggler.addEventListener('click', () => {
 });
 
 
-
 function enableInfoElement(click_me_id, info_id) {
     var click_me_element = document.getElementById(click_me_id)
     var info_element = document.getElementById(info_id)
@@ -103,3 +156,4 @@ function enableInfoElement(click_me_id, info_id) {
         info_element.style.display = "block"
     });
 }
+

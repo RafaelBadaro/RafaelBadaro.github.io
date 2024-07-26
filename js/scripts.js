@@ -145,6 +145,18 @@ navbarToggler.addEventListener('click', () => {
 });
 
 
+document.getElementById('click_me_info_name').addEventListener('click', () => {
+    enableInfoElement('click_me_info_name', 'info_name')
+});
+
+document.getElementById('click_me_info_country').addEventListener('click', () => {
+    enableInfoElement('click_me_info_country', 'info_country')
+});
+
+document.getElementById('click_me_info_age').addEventListener('click', () => {
+    enableInfoElement('click_me_info_age', 'info_age')
+});
+
 function enableInfoElement(click_me_id, info_id) {
     var click_me_element = document.getElementById(click_me_id)
     var info_element = document.getElementById(info_id)

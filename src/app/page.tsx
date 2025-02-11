@@ -19,7 +19,7 @@ export default function Home() {
         <div className="row-start-3 flex gap-2 flex-wrap items-center justify-center">
           <span> Check out my </span>
           <a
-            className="flex items-center gap-2 underline text-blue-600 hover:text-blue-800 visited:text-purple-600 hover:underline hover:underline-offset-4"
+            className="flex items-center gap-2 underline text-blue-600 hover:text-blue-800 hover:underline hover:underline-offset-4"
             href="https://www.linkedin.com/in/rafael-badaro/"
             target="_blank"
             rel="noopener noreferrer"
@@ -30,7 +30,7 @@ export default function Home() {
           <span>and</span>
 
           <a
-            className="flex items-center gap-2 text-gray-700 hover:underline hover:underline-offset-4"
+            className="flex items-center gap-2 underline text-blue-600 hover:text-blue-800 hover:underline hover:underline-offset-4"
             href="https://github.com/RafaelBadaro"
             target="_blank"
             rel="noopener noreferrer"

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 
 const fadeInVariants = {
@@ -16,18 +16,58 @@ const fadeInVariants = {
 
 const cardTransition = { duration: 0.35, ease: [0.22, 1, 0.36, 1] };
 
-const companies = [
+const experiences = [
   {
-    name: 'Nubank',
-    image: 'https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=1400',
+    title: {
+      en: 'WeFit/Porto Seguro 🇧🇷',
+      pt: 'WeFit/Porto Seguro 🇧🇷',
+    },
+    startDate: 'Jun 2025',
+    summary: {
+      en: 'Building features for an app used by millions of insurance customers, focused on product delivery, reliability, and UX quality.',
+      pt: 'Desenvolvendo funcionalidades para um app usado por milhoes de clientes de seguros, com foco em entrega, confiabilidade e qualidade de UX.',
+    },
+    tech: ['Swift', 'SwiftUI', 'UIKit'],
+    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1400',
   },
   {
-    name: 'Stone',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1400',
+    title: {
+      en: 'Leal Apps 🇧🇷',
+      pt: 'Leal Apps 🇧🇷',
+    },
+    startDate: 'Oct 2024',
+    summary: {
+      en: 'Delivered high-impact features for: GymWP & PossoComer, including a real-time shared grocery list, crash fixes that reached 99.9% crash-free sessions and fixed a iCloud + watchOS sync bug.',
+      pt: 'Entreguei funcionalidades de alto impacto para: GymWP e PossoComer, incluindo lista compartilhada em tempo real, correcoes que levaram a 99.9% de sessoes sem crash e a correcao de um bug de sincronizacao entre iCloud + watchOS.',
+    },
+    tech: ['Swift', 'UIKit', 'Firebase'],
+    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1400',
   },
   {
-    name: 'Mercado Livre',
-    image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=1400',
+    title: {
+      en: 'WEX 🇧🇷🇺🇸',
+      pt: 'WEX 🇧🇷🇺🇸',
+    },
+    startDate: 'Aug 2023',
+    summary: {
+      en: 'Worked on legacy decoupling initiatives and internal tools that accelerated engineering workflows in a multicultural team.',
+      pt: 'Atuei em iniciativas de desacoplamento de legado e em ferramentas internas que aceleraram o fluxo de engenharia em um time multicultural.',
+    },
+    tech: ['C#', '.NET', 'Microservices'],
+    image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=1400',
+  },
+  {
+    title: {
+      en: 'Symplicity 🇧🇷🇺🇸🇨🇦',
+      pt: 'Symplicity 🇧🇷🇺🇸🇨🇦',
+    },
+    startDate: 'Sep 2022',
+    summary: {
+      en: 'Implemented new features and tests on an international education and career platform.',
+      pt: 'Desenvolvi novas funcionalidades e testes em uma plataforma internacional de educacao e carreira.',
+    },
+    tech: ['C#', '.NET', 'Testing'],
+    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=1400',
   },
 ];
 
@@ -35,12 +75,12 @@ const companies = [
 const translations = {
   en: {
     nav: ['Projects', 'Skills'],
-    heroRole: 'iOS Engineer & Architect',
-    heroTitle: 'Crafting experiences with ',
-    heroPrecision: 'precision.',
-    heroDesc: 'Focused on performance-driven architecture and fluid SwiftUI interfaces.',
+    heroRole: 'Senior iOS Developer',
+    heroTitle: 'Building iOS products with ',
+    heroPrecision: 'clarity.',
+    heroDesc: 'Building iOS products with SwiftUI/UIKit, from architecture to polished UX for large-scale apps.',
     aboutMeTitle: 'About me',
-    aboutMeBody: 'I design and build digital products with a strong focus on performance, clean architecture, and polished user experiences across Apple platforms.',
+    aboutMeBody: 'I work on products used by millions of users, with focus on quality, performance and maintainable iOS codebases.',
     flipHint: 'Click to flip',
     status: 'Available for new projects',
     project1Title: 'FinTech Vision',
@@ -48,10 +88,8 @@ const translations = {
     linkedin: 'LinkedIn',
     github: 'GitHub',
     gmail: 'Gmail',
-    socialHint: 'Open profile',
     appStore: 'App Store',
     appsPublished: '1 Published App',
-    appCardHint: 'Open project',
     stackTitle: 'Core Stack',
     aboutTitle: 'About',
     aboutText: 'iOS engineer based in Brazil, focused on clean architecture, performance and simple product experiences.',
@@ -60,12 +98,12 @@ const translations = {
   },
   pt: {
     nav: ['Projetos', 'Skills'],
-    heroRole: 'Engenheiro iOS & Arquiteto',
-    heroTitle: 'Criando experiências com ',
-    heroPrecision: 'precisão.',
-    heroDesc: 'Focado em arquitetura de performance e interfaces fluidas em SwiftUI.',
+    heroRole: 'Desenvolvedor iOS Sênior',
+    heroTitle: 'Construindo produtos iOS com ',
+    heroPrecision: 'clareza.',
+    heroDesc: 'Construindo produtos iOS com SwiftUI/UIKit, da arquitetura até uma UX refinada em apps de grande escala.',
     aboutMeTitle: 'Sobre mim',
-    aboutMeBody: 'Eu desenho e desenvolvo produtos digitais com foco em performance, arquitetura limpa e experiências refinadas para plataformas Apple.',
+    aboutMeBody: 'Atuo em produtos usados por milhões de pessoas, com foco em qualidade, performance e código iOS sustentável.',
     flipHint: 'Clique para virar',
     status: 'Disponível para novos projetos',
     project1Title: 'FinTech Vision',
@@ -73,10 +111,8 @@ const translations = {
     linkedin: 'LinkedIn',
     github: 'GitHub',
     gmail: 'Gmail',
-    socialHint: 'Abrir perfil',
     appStore: 'App Store',
     appsPublished: '1 App Publicado',
-    appCardHint: 'Abrir projeto',
     stackTitle: 'Stack Principal',
     aboutTitle: 'Sobre',
     aboutText: 'Engenheiro iOS baseado no Brasil, com foco em arquitetura limpa, performance e experiências simples de produto.',
@@ -103,15 +139,36 @@ function App() {
   // --- ESTADO ---
   const [lang, setLang] = useState('en');
   const [isHeroFlipped, setIsHeroFlipped] = useState(false);
-  const [companyIndex, setCompanyIndex] = useState(0);
+  const carouselRef = useRef(null);
   const t = translations[lang];
+  const totalExperiences = experiences.length;
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCompanyIndex((prev) => (prev + 1) % companies.length);
-    }, 3200);
-    return () => clearInterval(timer);
-  }, []);
+  const getCurrentSlide = () => {
+    if (!carouselRef.current) return 0;
+    const { scrollLeft, clientWidth } = carouselRef.current;
+    if (!clientWidth) return 0;
+    return Math.round(scrollLeft / clientWidth);
+  };
+
+  const goToSlide = (index) => {
+    if (!carouselRef.current) return;
+    carouselRef.current.scrollTo({
+      left: index * carouselRef.current.clientWidth,
+      behavior: 'smooth',
+    });
+  };
+
+  const handleNext = () => {
+    const current = getCurrentSlide();
+    const next = current >= totalExperiences - 1 ? 0 : current + 1;
+    goToSlide(next);
+  };
+
+  const handlePrev = () => {
+    const current = getCurrentSlide();
+    const prev = current <= 0 ? totalExperiences - 1 : current - 1;
+    goToSlide(prev);
+  };
 
   return (
     <div className="min-h-screen bg-surface text-on-surface font-sans selection:bg-primary/30 antialiased">
@@ -186,7 +243,7 @@ function App() {
             {/* --- CARD LINKEDIN --- */}
             <BentoCard className="relative min-h-[120px] group !p-0" i={1}>
               <a
-                href="https://www.linkedin.com"
+                href="https://www.linkedin.com/in/rafaelbadaro/"
                 target="_blank"
                 rel="noreferrer"
                 className="relative h-full w-full block p-6 md:p-7"
@@ -196,9 +253,8 @@ function App() {
                   alt="LinkedIn background"
                   className="absolute right-5 top-1/2 -translate-y-1/2 w-24 h-24 object-contain opacity-20 group-hover:opacity-35 transition-opacity duration-300"
                 />
-                <div className="relative z-10">
+                <div className="relative z-10 h-full flex items-center justify-start text-left">
                   <p className="text-2xl font-semibold">{t.linkedin}</p>
-                  <p className="text-xs uppercase tracking-[0.2em] text-on-surface-variant mt-2">{t.socialHint}</p>
                 </div>
               </a>
             </BentoCard>
@@ -206,7 +262,7 @@ function App() {
             {/* --- CARD GITHUB --- */}
             <BentoCard className="relative min-h-[120px] group !p-0" i={2}>
               <a
-                href="https://github.com"
+                href="https://github.com/RafaelBadaro"
                 target="_blank"
                 rel="noreferrer"
                 className="relative h-full w-full block p-6 md:p-7"
@@ -216,9 +272,8 @@ function App() {
                   alt="GitHub background"
                   className="absolute right-5 top-1/2 -translate-y-1/2 w-24 h-24 object-contain opacity-15 group-hover:opacity-30 transition-opacity duration-300"
                 />
-                <div className="relative z-10">
+                <div className="relative z-10 h-full flex items-center justify-start text-left">
                   <p className="text-2xl font-semibold">{t.github}</p>
-                  <p className="text-xs uppercase tracking-[0.2em] text-on-surface-variant mt-2">{t.socialHint}</p>
                 </div>
               </a>
             </BentoCard>
@@ -226,7 +281,7 @@ function App() {
             {/* --- CARD GMAIL --- */}
             <BentoCard className="relative min-h-[120px] group !p-0" i={3}>
               <a
-                href="mailto:youremail@email.com"
+                href="mailto:rafaelaraujobadaro@gmail.com"
                 className="relative h-full w-full block p-6 md:p-7"
               >
                 <img
@@ -234,9 +289,8 @@ function App() {
                   alt="Gmail background"
                   className="absolute right-5 top-1/2 -translate-y-1/2 w-24 h-24 object-contain opacity-15 group-hover:opacity-30 transition-opacity duration-300"
                 />
-                <div className="relative z-10">
+                <div className="relative z-10 h-full flex items-center justify-start text-left">
                   <p className="text-2xl font-semibold">{t.gmail}</p>
-                  <p className="text-xs uppercase tracking-[0.2em] text-on-surface-variant mt-2">{t.socialHint}</p>
                 </div>
               </a>
             </BentoCard>
@@ -247,46 +301,49 @@ function App() {
         {/* --- PROJETOS + CORE STACK + APP STORE --- */}
         <section id="projects" className="grid grid-cols-1 md:grid-cols-12 gap-5">
           <BentoCard className="md:col-span-7 md:row-span-2 group relative !p-0 min-h-[280px] md:min-h-[420px]" i={2}>
-            <motion.img
-              key={companies[companyIndex].image}
-              src={companies[companyIndex].image}
-              alt={companies[companyIndex].name}
-              className="absolute inset-0 w-full h-full object-cover opacity-35"
-              initial={{ opacity: 0.1 }}
-              animate={{ opacity: 0.35 }}
-              whileHover={{ scale: 1.04, opacity: 0.55 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/70 to-transparent z-10" />
-            <div className="absolute bottom-0 p-6 md:p-8 z-20 space-y-4 w-full">
-              <div className="flex gap-2">
-                {['SwiftUI', 'Combine'].map((tech) => (
-                  <span key={tech} className="bg-white/10 backdrop-blur-md px-3 py-1 rounded-full text-[10px] uppercase tracking-wider font-semibold border border-white/10 text-on-surface">{tech}</span>
-                ))}
-              </div>
-              <h3 className="text-3xl font-semibold mb-2">{t.project1Title}</h3>
-              <p className="text-on-surface-variant text-sm md:text-base max-w-sm">{t.project1Desc}</p>
-              <p className="text-[10px] uppercase tracking-[0.22em] text-on-surface-variant">
-                {companies[companyIndex].name}
-              </p>
+            <button
+              type="button"
+              onClick={handlePrev}
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-30 px-2 py-8 text-on-surface/80 text-3xl leading-none hover:text-on-surface transition-colors"
+              aria-label="Previous experience"
+            >
+              ‹
+            </button>
+            <button
+              type="button"
+              onClick={handleNext}
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-30 px-2 py-8 text-on-surface/80 text-3xl leading-none hover:text-on-surface transition-colors"
+              aria-label="Next experience"
+            >
+              ›
+            </button>
 
-              <div className="overflow-x-auto pt-1 pb-1 pr-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                <div className="flex gap-2 min-w-max">
-                  {companies.map((company, index) => (
-                    <button
-                      key={company.name}
-                      type="button"
-                      onClick={() => setCompanyIndex(index)}
-                      className={`px-3 py-2 rounded-xl text-[11px] uppercase tracking-[0.16em] border transition-colors ${
-                        companyIndex === index
-                          ? 'bg-white/20 border-white/30 text-on-surface'
-                          : 'bg-white/5 border-white/10 text-on-surface-variant hover:text-on-surface'
-                      }`}
-                    >
-                      {company.name}
-                    </button>
-                  ))}
-                </div>
+            <div ref={carouselRef} className="overflow-x-auto h-full snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <div className="flex h-full">
+                {experiences.map((experience) => (
+                  <article key={experience.title.en} className="relative min-w-full h-full snap-start">
+                    <motion.img
+                      src={experience.image}
+                      alt={experience.title[lang]}
+                      className="absolute inset-0 w-full h-full object-cover opacity-35"
+                      whileHover={{ scale: 1.04, opacity: 0.55 }}
+                      transition={{ duration: 0.8, ease: "easeOut" }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/70 to-transparent z-10" />
+                    <div className="absolute bottom-0 p-6 md:p-8 z-20 space-y-4 w-full">
+                      <div className="flex gap-2">
+                        {experience.tech.map((tech) => (
+                          <span key={`${experience.title.en}-${tech}`} className="bg-white/10 backdrop-blur-md px-3 py-1 rounded-full text-[10px] uppercase tracking-wider font-semibold border border-white/10 text-on-surface">{tech}</span>
+                        ))}
+                      </div>
+                      <h3 className="text-2xl md:text-3xl font-semibold mb-2">{experience.title[lang]}</h3>
+                      <p className="text-on-surface-variant text-sm md:text-base max-w-xl">{experience.summary[lang]}</p>
+                      <p className="text-[10px] uppercase tracking-[0.22em] text-on-surface-variant">
+                        Start: {experience.startDate}
+                      </p>
+                    </div>
+                  </article>
+                ))}
               </div>
             </div>
           </BentoCard>
@@ -295,7 +352,7 @@ function App() {
           <BentoCard id="skills" className="md:col-span-5 space-y-6" i={4}>
             <h4 className="text-[10px] uppercase tracking-[0.3em] font-semibold text-primary">{t.stackTitle}</h4>
             <div className="space-y-4">
-              {['Swift / SwiftUI', 'Metal / CoreML', 'Combine / Async'].map((skill) => (
+              {['SwiftUI / UIKit', 'MVVM / VIP', 'XCUITest / Unit Testing', 'Firebase / JSON'].map((skill) => (
                 <div key={skill} className="flex justify-between items-center border-b border-outline-variant/10 pb-2">
                   <span className="text-sm font-medium">{skill}</span>
                   <div className="w-1.5 h-1.5 rounded-full bg-primary/40" />
@@ -319,7 +376,6 @@ function App() {
                   <p className="font-semibold text-base">{t.appStore}</p>
                   <p className="text-sm text-on-surface-variant mt-1">{t.appsPublished}</p>
                 </div>
-                <p className="text-[10px] uppercase tracking-[0.22em] text-on-surface-variant">{t.appCardHint}</p>
               </div>
             </a>
           </BentoCard>
@@ -331,10 +387,10 @@ function App() {
         <div className="max-w-[1120px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] uppercase tracking-[0.2em] font-semibold">
           <p className="opacity-55">© 2024 Master Architect</p>
           <div className="flex items-center gap-3 md:gap-4">
-            <a href="https://github.com" target="_blank" rel="noreferrer" className="opacity-55 hover:opacity-100 transition-opacity">
+            <a href="https://github.com/RafaelBadaro" target="_blank" rel="noreferrer" className="opacity-55 hover:opacity-100 transition-opacity">
               GitHub
             </a>
-            <a href="https://www.linkedin.com" target="_blank" rel="noreferrer" className="opacity-55 hover:opacity-100 transition-opacity">
+            <a href="https://www.linkedin.com/in/rafaelbadaro/" target="_blank" rel="noreferrer" className="opacity-55 hover:opacity-100 transition-opacity">
               LinkedIn
             </a>
             <a

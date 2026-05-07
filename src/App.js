@@ -75,7 +75,7 @@ const experiences = [
 const translations = {
   en: {
     nav: ['Projects', 'Skills'],
-    heroRole: 'Senior iOS Developer',
+    heroRole: 'Software Engineer',
     heroTitle: 'Building iOS products with ',
     heroPrecision: 'clarity.',
     heroDesc: 'Building iOS products with SwiftUI/UIKit, from architecture to polished UX for large-scale apps.',
@@ -98,7 +98,7 @@ const translations = {
   },
   pt: {
     nav: ['Projetos', 'Skills'],
-    heroRole: 'Desenvolvedor iOS Sênior',
+    heroRole: 'Engenheiro de Software',
     heroTitle: 'Construindo produtos iOS com ',
     heroPrecision: 'clareza.',
     heroDesc: 'Construindo produtos iOS com SwiftUI/UIKit, da arquitetura até uma UX refinada em apps de grande escala.',
@@ -243,7 +243,7 @@ function App() {
             {/* --- CARD LINKEDIN --- */}
             <BentoCard className="relative min-h-[120px] group !p-0" i={1}>
               <a
-                href="https://www.linkedin.com/in/rafaelbadaro/"
+                href="https://www.linkedin.com/in/rafael-badaro/"
                 target="_blank"
                 rel="noreferrer"
                 className="relative h-full w-full block p-6 md:p-7"
@@ -390,7 +390,7 @@ function App() {
             <a href="https://github.com/RafaelBadaro" target="_blank" rel="noreferrer" className="opacity-55 hover:opacity-100 transition-opacity">
               GitHub
             </a>
-            <a href="https://www.linkedin.com/in/rafaelbadaro/" target="_blank" rel="noreferrer" className="opacity-55 hover:opacity-100 transition-opacity">
+            <a href="https://www.linkedin.com/in/rafael-badaro/" target="_blank" rel="noreferrer" className="opacity-55 hover:opacity-100 transition-opacity">
               LinkedIn
             </a>
             <a

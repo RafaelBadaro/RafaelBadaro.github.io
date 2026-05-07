@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const fadeInVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -15,7 +15,7 @@ const fadeInVariants = {
 };
 
 const cardTransition = { duration: 0.35, ease: [0.22, 1, 0.36, 1] };
-const greetings = ['Hello!', 'Ola!', 'こんにちは！', 'Hola!', 'Salut!'];
+const greetings = ['Hello!', 'Olá!', 'こんにちは！', 'Hola!', 'Salut!'];
 
 const experiences = [
   {
@@ -78,12 +78,12 @@ const translations = {
     nav: ['Projects', 'Skills'],
     heroRole: 'Software Engineer',
     heroTitle: 'Building ',
-    heroPrecision: "awesome",
-    heroSuffix: "iOS apps :)",
+    heroPrecision: 'awesome',
+    heroSuffix: 'iOS apps :)',
     heroDesc: 'Building iOS products with SwiftUI/UIKit, from architecture to polished UX for large-scale apps.',
     aboutMeHint: 'About me',
     aboutMeTitle: 'Hey, you!',
-    aboutMeBody: 'I like to work on apps that can cause a meaningful impact in people\'s lives. I care about quality, performance, clean code and UX/UI.',
+    aboutMeBody: "I like to work on apps that can cause a meaningful impact in people's lives. I care about quality, performance, clean code and UX/UI.",
     flipHint: 'Click to flip',
     linkedin: 'LinkedIn',
     github: 'GitHub',
@@ -96,18 +96,18 @@ const translations = {
     aboutTitle: 'About',
     aboutText: 'iOS engineer based in Brazil, focused on clean architecture, performance and simple product experiences.',
     aboutNow: 'Currently building apps with SwiftUI, UIKit and AI integrations.',
-    footer: 'Built with precision in Belo Horizonte'
+    footer: 'Built with precision in Belo Horizonte',
   },
   pt: {
     nav: ['Projetos', 'Habilidades'],
     heroRole: 'Engenheiro de Software',
     heroTitle: 'Criando ',
-    heroPrecision: "incriveis",
-    heroSuffix: "apps iOS :)",
+    heroPrecision: 'incriveis',
+    heroSuffix: 'apps iOS :)',
     heroDesc: 'Construindo produtos iOS com SwiftUI/UIKit, da arquitetura até uma UX refinada em apps de grande escala.',
     aboutMeHint: 'Sobre mim',
     aboutMeTitle: 'Sobre mim',
-    aboutMeBody: 'Atuo em produtos usados por milhões de pessoas, com foco em qualidade, performance e código iOS sustentável.',
+    aboutMeBody: 'Gosto de trabalhar em apps que causam um impacto significativo na vida das pessoas. Me importo com qualidade, performance, codigo limpo e UX/UI.',
     flipHint: 'Clique para virar',
     linkedin: 'LinkedIn',
     github: 'GitHub',
@@ -118,19 +118,19 @@ const translations = {
     appsPublished: '1 App Publicado',
     stackTitle: 'Stack Principal',
     aboutTitle: 'Sobre',
-    aboutText: 'Engenheiro iOS baseado no Brasil, com foco em arquitetura limpa, performance e experiências simples de produto.',
-    aboutNow: 'Atualmente criando apps com SwiftUI, UIKit e integrações com IA.',
-    footer: 'Criado com precisão em Belo Horizonte'
-  }
+    aboutText: 'Engenheiro iOS baseado no Brasil, com foco em arquitetura limpa, performance e experiencias simples de produto.',
+    aboutNow: 'Atualmente criando apps com SwiftUI, UIKit e integracoes com IA.',
+    footer: 'Criado com precisao em Belo Horizonte',
+  },
 };
 
-const BentoCard = ({ children, className = "", i = 0 }) => (
+const BentoCard = ({ children, className = '', i = 0 }) => (
   <motion.div
     custom={i}
     initial="hidden"
     animate="visible"
     variants={fadeInVariants}
-    whileHover={{ y: -4, borderColor: "rgba(173, 198, 255, 0.35)" }}
+    whileHover={{ y: -4, borderColor: 'rgba(173, 198, 255, 0.35)' }}
     transition={cardTransition}
     className={`bg-surface-container-low border border-outline-variant/25 rounded-[28px] overflow-hidden p-6 md:p-8 ${className}`}
   >
@@ -174,16 +174,17 @@ function App() {
     goToSlide(prev);
   };
 
+  // Intervalo aumentado de 1400ms → 2800ms para rotação mais suave
   useEffect(() => {
     const timer = setInterval(() => {
       setGreetingIndex((prev) => (prev + 1) % greetings.length);
-    }, 1400);
+    }, 2800);
     return () => clearInterval(timer);
   }, []);
 
   return (
     <div className="min-h-screen bg-surface text-on-surface font-sans selection:bg-primary/30 antialiased">
-      
+
       {/* --- NAVBAR --- */}
       <nav className="fixed top-0 w-full z-50 bg-surface/75 backdrop-blur-xl border-b border-outline-variant/10">
         <div className="max-w-[1120px] mx-auto flex justify-between items-center h-16 px-6">
@@ -231,6 +232,7 @@ function App() {
                 transition={cardTransition}
                 className="relative w-full h-full [transform-style:preserve-3d]"
               >
+                {/* --- FRENTE --- */}
                 <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-center [backface-visibility:hidden]">
                   <span className="text-primary text-[11px] font-semibold uppercase tracking-[0.24em] mb-8">{t.heroRole}</span>
                   <h1 className="text-4xl md:text-[4.9rem] font-semibold tracking-tight leading-[0.92] mb-7">
@@ -242,11 +244,26 @@ function App() {
                   <span className="mt-8 text-[10px] uppercase tracking-[0.22em] text-on-surface-variant">{t.flipHint}</span>
                 </div>
 
+                {/* --- VERSO (com AnimatePresence no greeting) --- */}
                 <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-center [backface-visibility:hidden] [transform:rotateY(180deg)]">
                   <span className="text-primary text-[11px] font-semibold uppercase tracking-[0.24em] mb-8">{t.aboutMeHint}</span>
-                  <h2 className="text-3xl md:text-5xl font-semibold tracking-tight leading-tight mb-7">
-                    {greetings[greetingIndex]}
-                  </h2>
+
+                  {/* Greeting animado com fade + slide suave */}
+                  <div className="mb-7 overflow-hidden" style={{ minHeight: '4rem' }}>
+                    <AnimatePresence mode="wait">
+                      <motion.h2
+                        key={greetingIndex}
+                        initial={{ opacity: 0, y: 14 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -14 }}
+                        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                        className="text-3xl md:text-5xl font-semibold tracking-tight leading-tight"
+                      >
+                        {greetings[greetingIndex]}
+                      </motion.h2>
+                    </AnimatePresence>
+                  </div>
+
                   <p className="text-on-surface-variant text-base md:text-lg max-w-2xl">{t.aboutMeBody}</p>
                 </div>
               </motion.div>
@@ -310,7 +327,6 @@ function App() {
               </a>
             </BentoCard>
           </div>
-
         </section>
 
         {/* --- PROJETOS + CORE STACK + APP STORE --- */}
@@ -342,13 +358,18 @@ function App() {
                       alt={experience.title[lang]}
                       className="absolute inset-0 w-full h-full object-cover opacity-35"
                       whileHover={{ scale: 1.04, opacity: 0.55 }}
-                      transition={{ duration: 0.8, ease: "easeOut" }}
+                      transition={{ duration: 0.8, ease: 'easeOut' }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/70 to-transparent z-10" />
                     <div className="absolute bottom-0 p-6 md:p-8 z-20 space-y-4 w-full">
                       <div className="flex gap-2">
                         {experience.tech.map((tech) => (
-                          <span key={`${experience.title.en}-${tech}`} className="bg-white/10 backdrop-blur-md px-3 py-1 rounded-full text-[10px] uppercase tracking-wider font-semibold border border-white/10 text-on-surface">{tech}</span>
+                          <span
+                            key={`${experience.title.en}-${tech}`}
+                            className="bg-white/10 backdrop-blur-md px-3 py-1 rounded-full text-[10px] uppercase tracking-wider font-semibold border border-white/10 text-on-surface"
+                          >
+                            {tech}
+                          </span>
                         ))}
                       </div>
                       <h3 className="text-2xl md:text-3xl font-semibold mb-2">{experience.title[lang]}</h3>
@@ -367,7 +388,7 @@ function App() {
           <BentoCard id="skills" className="md:col-span-5 space-y-6" i={4}>
             <h4 className="text-[10px] uppercase tracking-[0.3em] font-semibold text-primary">{t.stackTitle}</h4>
             <div className="space-y-4">
-              {['SwiftUI / UIKit', 'MVVM / VIP', 'XCUITest / Unit Testing', 'Firebase / JSON'].map((skill) => (
+              {['SwiftUI / UIKit', 'MVVM / VIP', 'XCUITest / Unit Testing / Swift testing ', 'Firebase / JSON / Supabase'].map((skill) => (
                 <div key={skill} className="flex justify-between items-center border-b border-outline-variant/10 pb-2">
                   <span className="text-sm font-medium">{skill}</span>
                   <div className="w-1.5 h-1.5 rounded-full bg-primary/40" />

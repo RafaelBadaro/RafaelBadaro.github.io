@@ -89,7 +89,7 @@ const translations = {
     github: 'GitHub',
     gmail: 'Gmail',
     experienceStart: 'Start',
-    downloadCv: 'Download CV',
+    downloadCv: 'CV',
     appStore: 'App Store',
     appsPublished: '1 Published App',
     stackTitle: 'Core Stack',
@@ -113,7 +113,7 @@ const translations = {
     github: 'GitHub',
     gmail: 'Gmail',
     experienceStart: 'Inicio',
-    downloadCv: 'Baixar CV',
+    downloadCv: 'CV',
     appStore: 'App Store',
     appsPublished: '1 App Publicado',
     stackTitle: 'Stack Principal',
@@ -421,7 +421,7 @@ function App() {
       {/* --- FOOTER --- */}
       <footer className="py-12 px-6 border-t border-outline-variant/10 mt-2">
         <div className="max-w-[1120px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] uppercase tracking-[0.2em] font-semibold">
-          <p className="opacity-55">© 2024 Master Architect</p>
+          <p className="opacity-55">© 2026 Rafael Badaró</p>
           <div className="flex items-center gap-3 md:gap-4">
             <a href="https://github.com/RafaelBadaro" target="_blank" rel="noreferrer" className="opacity-55 hover:opacity-100 transition-opacity">
               GitHub

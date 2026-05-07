@@ -10,4 +10,12 @@ html {
 
 body {
   font-family: "Inter", sans-serif;
+  background: radial-gradient(circle at 10% -20%, rgba(173, 198, 255, 0.12), transparent 40%),
+    radial-gradient(circle at 90% 0%, rgba(255, 255, 255, 0.05), transparent 35%);
+  min-height: 100vh;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

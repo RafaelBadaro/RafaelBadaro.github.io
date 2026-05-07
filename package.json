@@ -2,6 +2,7 @@
   "name": "portfolio",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://RafaelBadaro.github.io",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build"
@@ -12,9 +13,9 @@
     "react-scripts": "5.0.1"
   },
   "devDependencies": {
-    "tailwindcss": "^3.4.1",
     "autoprefixer": "^10.4.17",
-    "postcss": "^8.4.35"
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1"
   },
   "browserslist": {
     "production": [

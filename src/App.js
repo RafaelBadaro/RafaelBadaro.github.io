@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 
 const fadeInVariants = {
@@ -15,6 +15,7 @@ const fadeInVariants = {
 };
 
 const cardTransition = { duration: 0.35, ease: [0.22, 1, 0.36, 1] };
+const greetings = ['Hello!', 'Ola!', 'こんにちは！', 'Hola!', 'Salut!'];
 
 const experiences = [
   {
@@ -76,18 +77,19 @@ const translations = {
   en: {
     nav: ['Projects', 'Skills'],
     heroRole: 'Software Engineer',
-    heroTitle: 'Building iOS products with ',
-    heroPrecision: 'clarity.',
+    heroTitle: 'Building ',
+    heroPrecision: "awesome",
+    heroSuffix: "iOS apps :)",
     heroDesc: 'Building iOS products with SwiftUI/UIKit, from architecture to polished UX for large-scale apps.',
-    aboutMeTitle: 'About me',
-    aboutMeBody: 'I work on products used by millions of users, with focus on quality, performance and maintainable iOS codebases.',
+    aboutMeHint: 'About me',
+    aboutMeTitle: 'Hey, you!',
+    aboutMeBody: 'I like to work on apps that can cause a meaningful impact in people\'s lives. I care about quality, performance, clean code and UX/UI.',
     flipHint: 'Click to flip',
-    status: 'Available for new projects',
-    project1Title: 'FinTech Vision',
-    project1Desc: 'High-performance financial dashboard utilizing complex rendering.',
     linkedin: 'LinkedIn',
     github: 'GitHub',
     gmail: 'Gmail',
+    experienceStart: 'Start',
+    downloadCv: 'Download CV',
     appStore: 'App Store',
     appsPublished: '1 Published App',
     stackTitle: 'Core Stack',
@@ -97,20 +99,21 @@ const translations = {
     footer: 'Built with precision in Belo Horizonte'
   },
   pt: {
-    nav: ['Projetos', 'Skills'],
+    nav: ['Projetos', 'Habilidades'],
     heroRole: 'Engenheiro de Software',
-    heroTitle: 'Construindo produtos iOS com ',
-    heroPrecision: 'clareza.',
+    heroTitle: 'Criando ',
+    heroPrecision: "incriveis",
+    heroSuffix: "apps iOS :)",
     heroDesc: 'Construindo produtos iOS com SwiftUI/UIKit, da arquitetura até uma UX refinada em apps de grande escala.',
+    aboutMeHint: 'Sobre mim',
     aboutMeTitle: 'Sobre mim',
     aboutMeBody: 'Atuo em produtos usados por milhões de pessoas, com foco em qualidade, performance e código iOS sustentável.',
     flipHint: 'Clique para virar',
-    status: 'Disponível para novos projetos',
-    project1Title: 'FinTech Vision',
-    project1Desc: 'Dashboard financeiro de alta performance com renderização complexa.',
     linkedin: 'LinkedIn',
     github: 'GitHub',
     gmail: 'Gmail',
+    experienceStart: 'Inicio',
+    downloadCv: 'Baixar CV',
     appStore: 'App Store',
     appsPublished: '1 App Publicado',
     stackTitle: 'Stack Principal',
@@ -139,6 +142,7 @@ function App() {
   // --- ESTADO ---
   const [lang, setLang] = useState('en');
   const [isHeroFlipped, setIsHeroFlipped] = useState(false);
+  const [greetingIndex, setGreetingIndex] = useState(0);
   const carouselRef = useRef(null);
   const t = translations[lang];
   const totalExperiences = experiences.length;
@@ -170,6 +174,13 @@ function App() {
     goToSlide(prev);
   };
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setGreetingIndex((prev) => (prev + 1) % greetings.length);
+    }, 1400);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div className="min-h-screen bg-surface text-on-surface font-sans selection:bg-primary/30 antialiased">
       
@@ -198,7 +209,7 @@ function App() {
               download
               className="px-4 py-2 rounded-full text-[10px] font-semibold uppercase tracking-[0.18em] border border-outline-variant/30 text-on-surface-variant hover:text-on-surface hover:border-primary/40 transition-colors"
             >
-              Download CV
+              {t.downloadCv}
             </a>
           </div>
         </div>
@@ -223,15 +234,19 @@ function App() {
                 <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-center [backface-visibility:hidden]">
                   <span className="text-primary text-[11px] font-semibold uppercase tracking-[0.24em] mb-8">{t.heroRole}</span>
                   <h1 className="text-4xl md:text-[4.9rem] font-semibold tracking-tight leading-[0.92] mb-7">
-                    {t.heroTitle}<span className="text-on-surface-variant relative">{t.heroPrecision}</span>
+                    {t.heroTitle}
+                    <span className="text-on-surface-variant relative">{t.heroPrecision}</span>
+                    {t.heroSuffix ? ` ${t.heroSuffix}` : ''}
                   </h1>
                   <p className="text-on-surface-variant text-base md:text-lg max-w-xl">{t.heroDesc}</p>
                   <span className="mt-8 text-[10px] uppercase tracking-[0.22em] text-on-surface-variant">{t.flipHint}</span>
                 </div>
 
                 <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-center [backface-visibility:hidden] [transform:rotateY(180deg)]">
-                  <span className="text-primary text-[11px] font-semibold uppercase tracking-[0.24em] mb-8">{t.aboutMeTitle}</span>
-                  <h2 className="text-3xl md:text-5xl font-semibold tracking-tight leading-tight mb-7">{t.aboutMeTitle}</h2>
+                  <span className="text-primary text-[11px] font-semibold uppercase tracking-[0.24em] mb-8">{t.aboutMeHint}</span>
+                  <h2 className="text-3xl md:text-5xl font-semibold tracking-tight leading-tight mb-7">
+                    {greetings[greetingIndex]}
+                  </h2>
                   <p className="text-on-surface-variant text-base md:text-lg max-w-2xl">{t.aboutMeBody}</p>
                 </div>
               </motion.div>
@@ -339,7 +354,7 @@ function App() {
                       <h3 className="text-2xl md:text-3xl font-semibold mb-2">{experience.title[lang]}</h3>
                       <p className="text-on-surface-variant text-sm md:text-base max-w-xl">{experience.summary[lang]}</p>
                       <p className="text-[10px] uppercase tracking-[0.22em] text-on-surface-variant">
-                        Start: {experience.startDate}
+                        {t.experienceStart}: {experience.startDate}
                       </p>
                     </div>
                   </article>
@@ -398,7 +413,7 @@ function App() {
               download
               className="px-3 py-2 rounded-full border border-outline-variant/30 text-[10px] opacity-70 hover:opacity-100 hover:border-primary/40 transition-colors"
             >
-              Download CV
+              {t.downloadCv}
             </a>
           </div>
         </div>

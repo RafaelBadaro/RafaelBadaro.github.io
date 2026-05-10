@@ -26,8 +26,8 @@ const experiences = [
     startDate: 'Jun 2025',
     endDate: 'Present',
     summary: {
-      en: 'Building features for an app used by millions of insurance customers, focused on product delivery, reliability, and UX quality.',
-      pt: 'Desenvolvendo funcionalidades para um app usado por milhoes de clientes de seguros, com foco em entrega, confiabilidade e qualidade de UX.',
+      en: 'Building features for the Porto Seguro app used by millions of insurance customers, focused on product delivery, reliability, and UX quality.',
+      pt: 'Desenvolvendo funcionalidades para o app Porto Seguro usado por milhoes de clientes de seguros, com foco em entrega, confiabilidade e qualidade de UX.',
     },
     tech: ['Swift', 'SwiftUI', 'UIKit'],
     // Porto Seguro — institutional blue
@@ -86,8 +86,8 @@ const experiences = [
     startDate: 'Sep 2022',
     endDate: 'Jun 2023',
     summary: {
-      en: 'Implemented new features and tests on an international education and career platform.',
-      pt: 'Desenvolvi novas funcionalidades e testes em uma plataforma internacional de educacao e carreira.',
+en: 'Delivered features and tests for the https://outcomecampusconnect.ca/ platform, "Canada\'s best resource for university and college students to find a job"',
+pt: 'Desenvolvi funcionalidades e testes para a plataforma https://outcomecampusconnect.ca/, "o melhor recurso do Canadá para estudantes universitários e de faculdades encontrarem emprego."',
     },
     tech: ['C#', '.NET', 'Testing'],
     // Symplicity — indigo/purple, education
@@ -102,14 +102,11 @@ const experiences = [
 
 const translations = {
   en: {
-    nav: ['Projects', 'Skills'],
     heroRole: 'Software Engineer',
     heroTitle: 'Building ',
     heroPrecision: 'awesome',
     heroSuffix: 'iOS apps :)',
-    heroDesc: 'Building iOS products with SwiftUI/UIKit, from architecture to polished UX for large-scale apps.',
     aboutMeHint: 'About me',
-    aboutMeTitle: 'Hey, you!',
     aboutMeBody: "I like to work on apps that can cause a meaningful impact in people's lives. I care about quality, performance, clean code and UX/UI.",
     flipHint: 'Click to flip',
     linkedin: 'LinkedIn',
@@ -119,21 +116,14 @@ const translations = {
     appStore: 'App Store',
     appsPublished: '1 Published App',
     stackTitle: 'Core Stack',
-    aboutTitle: 'About',
-    aboutText: 'iOS engineer based in Brazil, focused on clean architecture, performance and simple product experiences.',
-    aboutNow: 'Currently building apps with SwiftUI, UIKit and AI integrations.',
-    footer: 'Built with precision in Belo Horizonte',
   },
   pt: {
-    nav: ['Projetos', 'Habilidades'],
     heroRole: 'Engenheiro de Software',
     heroTitle: 'Criando ',
-    heroPrecision: 'incriveis',
-    heroSuffix: 'apps iOS :)',
-    heroDesc: 'Construindo produtos iOS com SwiftUI/UIKit, da arquitetura até uma UX refinada em apps de grande escala.',
+    heroPrecision: 'apps incríveis',
+    heroSuffix: 'de iOS :)',
     aboutMeHint: 'Sobre mim',
-    aboutMeTitle: 'Sobre mim',
-    aboutMeBody: 'Gosto de trabalhar em apps que causam um impacto significativo na vida das pessoas. Me importo com qualidade, performance, codigo limpo e UX/UI.',
+    aboutMeBody: 'Gosto de trabalhar em apps que possam causar um impacto positivo na vida das pessoas. Eu ligo para qualidade, performance, codigo limpo e UX/UI.',
     flipHint: 'Clique para virar',
     linkedin: 'LinkedIn',
     github: 'GitHub',
@@ -142,10 +132,6 @@ const translations = {
     appStore: 'App Store',
     appsPublished: '1 App Publicado',
     stackTitle: 'Stack Principal',
-    aboutTitle: 'Sobre',
-    aboutText: 'Engenheiro iOS baseado no Brasil, com foco em arquitetura limpa, performance e experiencias simples de produto.',
-    aboutNow: 'Atualmente criando apps com SwiftUI, UIKit e integracoes com IA.',
-    footer: 'Criado com precisao em Belo Horizonte',
   },
 };
 
@@ -257,7 +243,6 @@ function App() {
                     <span className="text-on-surface-variant">{t.heroPrecision}</span>
                     {t.heroSuffix ? ` ${t.heroSuffix}` : ''}
                   </h1>
-                  <p className="text-on-surface-variant text-base md:text-lg max-w-xl">{t.heroDesc}</p>
                   <span className="mt-8 text-[10px] uppercase tracking-[0.22em] text-on-surface-variant">{t.flipHint}</span>
                 </div>
 

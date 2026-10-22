@@ -130,7 +130,7 @@ const translations = {
     gmail: 'Gmail',
     downloadCv: 'CV',
     appStore: 'App Store',
-    seeMyApps: 'Veja meus apps',
+    seeMyApps: 'Veja meus apps!',
     stackTitle: 'Stack Principal',
   },
 };

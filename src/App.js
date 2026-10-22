@@ -114,14 +114,14 @@ const translations = {
     gmail: 'Gmail',
     downloadCv: 'CV',
     appStore: 'App Store',
-    appsPublished: '1 Published App',
+    seeMyApps: 'Check out my apps!',
     stackTitle: 'Core Stack',
   },
   pt: {
     heroRole: 'Engenheiro de Software',
     heroTitle: 'Criando ',
     heroPrecision: 'apps incríveis',
-    heroSuffix: 'de iOS :)',
+    heroSuffix: 'pra iOS :)',
     aboutMeHint: 'Sobre mim',
     aboutMeBody: 'Gosto de trabalhar em apps que possam causar um impacto positivo na vida das pessoas. Eu ligo para qualidade, performance, codigo limpo e UX/UI.',
     flipHint: 'Clique para virar',
@@ -130,7 +130,7 @@ const translations = {
     gmail: 'Gmail',
     downloadCv: 'CV',
     appStore: 'App Store',
-    appsPublished: '1 App Publicado',
+    seeMyApps: 'Veja meus apps',
     stackTitle: 'Stack Principal',
   },
 };
@@ -271,21 +271,28 @@ function App() {
 
           {/* SOCIAL */}
           <div className="md:col-span-5 grid grid-cols-1 gap-5">
-            <BentoCard className="relative min-h-[120px] group !p-0" i={1}>
+            {/* APP STORE */}
+            <BentoCard className="relative min-h-[140px] group !p-0 !border-primary/40 bg-gradient-to-br from-primary/25 via-primary/10 to-transparent" i={1}>
+              <a href="https://badaroapps.netlify.app/" target="_blank" rel="noreferrer" className="relative h-full w-full block p-6 md:p-7">
+                <img src="/appstore.png" alt="" className="absolute right-5 top-1/2 -translate-y-1/2 w-24 h-24 object-contain rounded-[22px] opacity-90 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="relative z-10 h-full flex items-center"><p className="text-2xl font-semibold pr-24">{t.seeMyApps}</p></div>
+              </a>
+            </BentoCard>
+            <BentoCard className="relative min-h-[120px] group !p-0" i={2}>
               <a href="https://www.linkedin.com/in/rafael-badaro/" target="_blank" rel="noreferrer" className="relative h-full w-full block p-6 md:p-7">
                 <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="" className="absolute right-5 top-1/2 -translate-y-1/2 w-24 h-24 object-contain opacity-20 group-hover:opacity-35 transition-opacity duration-300" />
                 <div className="relative z-10 h-full flex items-center"><p className="text-2xl font-semibold">{t.linkedin}</p></div>
               </a>
             </BentoCard>
 
-            <BentoCard className="relative min-h-[120px] group !p-0" i={2}>
+            <BentoCard className="relative min-h-[120px] group !p-0" i={3}>
               <a href="https://github.com/RafaelBadaro" target="_blank" rel="noreferrer" className="relative h-full w-full block p-6 md:p-7">
                 <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="" className="absolute right-5 top-1/2 -translate-y-1/2 w-24 h-24 object-contain opacity-15 group-hover:opacity-30 transition-opacity duration-300" />
                 <div className="relative z-10 h-full flex items-center"><p className="text-2xl font-semibold">{t.github}</p></div>
               </a>
             </BentoCard>
 
-            <BentoCard className="relative min-h-[120px] group !p-0" i={3}>
+            <BentoCard className="relative min-h-[120px] group !p-0" i={4}>
               <a href="mailto:rafaelaraujobadaro@gmail.com" className="relative h-full w-full block p-6 md:p-7">
                 <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="" className="absolute right-5 top-1/2 -translate-y-1/2 w-24 h-24 object-contain opacity-15 group-hover:opacity-30 transition-opacity duration-300" />
                 <div className="relative z-10 h-full flex items-center"><p className="text-2xl font-semibold">{t.gmail}</p></div>
@@ -294,7 +301,7 @@ function App() {
           </div>
         </section>
 
-        {/* EXPERIENCIAS + STACK + APP STORE */}
+        {/* EXPERIENCIAS + STACK */}
         <section id="projects" className="grid grid-cols-1 md:grid-cols-12 gap-5">
           <BentoCard className="md:col-span-7 md:row-span-2 group relative !p-0 min-h-[280px] md:min-h-[420px]" i={2}>
             <button type="button" onClick={handlePrev} className="absolute left-0 top-1/2 -translate-y-1/2 z-30 px-2 py-8 text-on-surface/80 text-3xl leading-none hover:text-on-surface transition-colors" aria-label="Previous">‹</button>
@@ -354,20 +361,6 @@ function App() {
                 </div>
               ))}
             </div>
-          </BentoCard>
-
-          {/* APP STORE */}
-          <BentoCard className="md:col-span-5 group !p-0 min-h-[170px]" i={5}>
-            <a href="https://badaroapps.netlify.app/" target="_blank" rel="noreferrer" className="h-full w-full block p-6 md:p-7 relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/5 opacity-70 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="relative z-10 flex h-full items-end justify-between gap-6">
-                <div>
-                  <p className="text-xl font-semibold uppercase tracking-[0.16em] text-primary mb-2">iOS</p>
-                  <p className="font-semibold text-base">{t.appStore}</p>
-                  <p className="text-sm text-on-surface-variant mt-1">{t.appsPublished}</p>
-                </div>
-              </div>
-            </a>
           </BentoCard>
         </section>
       </main>

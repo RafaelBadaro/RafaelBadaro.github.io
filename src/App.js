@@ -102,13 +102,7 @@ pt: 'Desenvolvi funcionalidades e testes para a plataforma https://outcomecampus
 
 const translations = {
   en: {
-    heroRole: 'Software Engineer',
-    heroTitle: 'Building ',
-    heroPrecision: 'awesome',
-    heroSuffix: 'iOS apps :)',
-    aboutMeHint: 'About me',
     aboutMeBody: "I like to work on apps that can cause a meaningful impact in people's lives. I care about quality, performance, clean code and UX/UI.",
-    flipHint: 'Click to flip',
     linkedin: 'LinkedIn',
     github: 'GitHub',
     gmail: 'Gmail',
@@ -117,16 +111,11 @@ const translations = {
     seeMyApps: 'Check out my apps!',
     tryToWrite: 'Medium',
     tryToEdit: 'YouTube',
-    stackTitle: 'Core Stack',
+    linksTitle: 'Links',
+    experiencesTitle: 'Professional experiences',
   },
   pt: {
-    heroRole: 'Engenheiro de Software',
-    heroTitle: 'Criando ',
-    heroPrecision: 'apps incríveis',
-    heroSuffix: 'pra iOS :)',
-    aboutMeHint: 'Sobre mim',
     aboutMeBody: 'Gosto de trabalhar em apps que possam causar um impacto positivo na vida das pessoas. Eu ligo para qualidade, performance, codigo limpo e UX/UI.',
-    flipHint: 'Clique para virar',
     linkedin: 'LinkedIn',
     github: 'GitHub',
     gmail: 'Gmail',
@@ -135,7 +124,8 @@ const translations = {
     seeMyApps: 'Veja meus apps!',
     tryToWrite: 'Medium',
     tryToEdit: 'YouTube',
-    stackTitle: 'Stack Principal',
+    linksTitle: 'Links',
+    experiencesTitle: 'Experiências profissionais',
   },
 };
 
@@ -155,7 +145,6 @@ const BentoCard = ({ children, className = '', i = 0 }) => (
 
 function App() {
   const [lang, setLang] = useState('en');
-  const [isHeroFlipped, setIsHeroFlipped] = useState(false);
   const [greetingIndex, setGreetingIndex] = useState(0);
   const carouselRef = useRef(null);
   const t = translations[lang];
@@ -226,55 +215,29 @@ function App() {
       {/* --- MAIN --- */}
       <main id="top" className="pt-28 pb-24 px-6 max-w-[1120px] mx-auto space-y-5">
 
-        {/* HERO + SOCIAL */}
-        <section className="grid grid-cols-1 md:grid-cols-12 gap-5">
-          <BentoCard className="md:col-span-7 !p-0 min-h-[360px] md:min-h-[420px]" i={0}>
-            <button
-              type="button"
-              onClick={() => setIsHeroFlipped((prev) => !prev)}
-              className="relative w-full h-full min-h-[360px] md:min-h-[420px] text-left [perspective:1200px]"
-            >
-              <motion.div
-                animate={{ rotateY: isHeroFlipped ? 180 : 0 }}
-                transition={cardTransition}
-                className="relative w-full h-full [transform-style:preserve-3d]"
+        {/* INTRO */}
+        <section className="pt-6 pb-4 md:pt-10 md:pb-6">
+          <div className="mb-5 overflow-hidden" style={{ minHeight: '5.5rem' }}>
+            <AnimatePresence mode="wait">
+              <motion.h1
+                key={greetingIndex}
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -14 }}
+                transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                className="text-5xl md:text-[5.5rem] font-semibold tracking-tight leading-tight"
               >
-                {/* FRENTE */}
-                <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-center [backface-visibility:hidden]">
-                  <span className="text-primary text-[11px] font-semibold uppercase tracking-[0.24em] mb-8">{t.heroRole}</span>
-                  <h1 className="text-4xl md:text-[4.9rem] font-semibold tracking-tight leading-[0.92] mb-7">
-                    {t.heroTitle}
-                    <span className="text-on-surface-variant">{t.heroPrecision}</span>
-                    {t.heroSuffix ? ` ${t.heroSuffix}` : ''}
-                  </h1>
-                  <span className="mt-8 text-[10px] uppercase tracking-[0.22em] text-on-surface-variant">{t.flipHint}</span>
-                </div>
+                {greetings[greetingIndex]}
+              </motion.h1>
+            </AnimatePresence>
+          </div>
+          <p className="text-on-surface-variant text-base md:text-xl max-w-2xl">{t.aboutMeBody}</p>
+        </section>
 
-                {/* VERSO */}
-                <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-center [backface-visibility:hidden] [transform:rotateY(180deg)]">
-                  <span className="text-primary text-[11px] font-semibold uppercase tracking-[0.24em] mb-8">{t.aboutMeHint}</span>
-                  <div className="mb-7 overflow-hidden" style={{ minHeight: '4rem' }}>
-                    <AnimatePresence mode="wait">
-                      <motion.h2
-                        key={greetingIndex}
-                        initial={{ opacity: 0, y: 14 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -14 }}
-                        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                        className="text-3xl md:text-5xl font-semibold tracking-tight leading-tight"
-                      >
-                        {greetings[greetingIndex]}
-                      </motion.h2>
-                    </AnimatePresence>
-                  </div>
-                  <p className="text-on-surface-variant text-base md:text-lg max-w-2xl">{t.aboutMeBody}</p>
-                </div>
-              </motion.div>
-            </button>
-          </BentoCard>
-
-          {/* SOCIAL */}
-          <div className="md:col-span-5 grid grid-cols-1 gap-5">
+        {/* SOCIAL */}
+        <section>
+          <h2 className="text-2xl md:text-3xl font-semibold italic tracking-tight mb-5">{t.linksTitle}</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {/* APP STORE */}
             <BentoCard className="relative min-h-[140px] group !p-0 !border-primary/40 bg-gradient-to-br from-primary/25 via-primary/10 to-transparent" i={1}>
               <a href="https://badaroapps.netlify.app/" target="_blank" rel="noreferrer" className="relative h-full w-full block p-6 md:p-7">
@@ -318,8 +281,9 @@ function App() {
         </section>
 
         {/* EXPERIENCIAS + STACK */}
-        <section id="projects" className="grid grid-cols-1 md:grid-cols-12 gap-5">
-          <BentoCard className="md:col-span-7 md:row-span-2 group relative !p-0 min-h-[280px] md:min-h-[420px]" i={2}>
+        <section id="projects" className="pt-6">
+          <h2 className="text-2xl md:text-3xl font-semibold italic tracking-tight mb-5">{t.experiencesTitle}</h2>
+          <BentoCard className="group relative !p-0 h-[420px]" i={2}>
             <button type="button" onClick={handlePrev} className="absolute left-0 top-1/2 -translate-y-1/2 z-30 px-2 py-8 text-on-surface/80 text-3xl leading-none hover:text-on-surface transition-colors" aria-label="Previous">‹</button>
             <button type="button" onClick={handleNext} className="absolute right-0 top-1/2 -translate-y-1/2 z-30 px-2 py-8 text-on-surface/80 text-3xl leading-none hover:text-on-surface transition-colors" aria-label="Next">›</button>
 
@@ -363,19 +327,6 @@ function App() {
                   </article>
                 ))}
               </div>
-            </div>
-          </BentoCard>
-
-          {/* CORE STACK */}
-          <BentoCard id="skills" className="md:col-span-5 space-y-6" i={4}>
-            <h4 className="text-[10px] uppercase tracking-[0.3em] font-semibold text-primary">{t.stackTitle}</h4>
-            <div className="space-y-4">
-              {['SwiftUI / UIKit', 'MVVM / VIP', 'XCUITest / Unit Testing / Swift Testing', 'Firebase / JSON / Supabase'].map((skill) => (
-                <div key={skill} className="flex justify-between items-center border-b border-outline-variant/10 pb-2">
-                  <span className="text-sm font-medium">{skill}</span>
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary/40" />
-                </div>
-              ))}
             </div>
           </BentoCard>
         </section>

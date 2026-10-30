@@ -18,6 +18,37 @@ const cardTransition = { duration: 0.35, ease: [0.22, 1, 0.36, 1] };
 const email = 'rafaelaraujobadaro@gmail.com';
 const greetings = ['Hello!', 'Olá!', 'こんにちは！', 'Hola!', 'Salut!'];
 
+const intro = {
+  en: (
+    <>
+            <p>Nice to meet you!<br />My name is Rafael, but you can call me <em>Rafa, Badaró, Bada</em> (i have a lot of nicknames lol)</p>
+            <p>Currently working as an <strong className="italic mr-1">iOS Software Engineer</strong> for <strong className="italic">WeFit</strong></p>
+            <p>I love my <em className="font-serif">fiancé</em>! (Shoutout mo)</p>
+            <p>I like: creating things, chatting (literally I talk about anything lol), cooking/eating and fitness.</p>
+            <p>
+              Lately been getting into <a href="https://medium.com/@rafabadaro.15" target="_blank" rel="noreferrer" className="underline underline-offset-4 text-on-surface hover:text-primary transition-colors">writing</a> and <a href="https://www.youtube.com/channel/UCXEP5NLGHNxbS9-0HBPtSsw" target="_blank" rel="noreferrer" className="underline underline-offset-4 text-on-surface hover:text-primary transition-colors">editing</a>.
+            </p>
+            <p>Currently reading: <em className="mr-1">Atlas Shrugged</em> by Ayn Rand</p>
+            <p>Hope you have a great day/night! (I have no idea where you at right now)</p>
+            <p>Thank you for visiting my portfolio ;)</p>
+    </>
+  ),
+  pt: (
+    <>
+            <p>Prazer em te conhecer!<br />Me chamo Rafael, mas pode me chamar de <em>Rafa, Badaró, Bada</em> (tenho vários apelidos kkk)</p>
+            <p>Atualmente trabalho como <strong className="italic mr-1">Engenheiro de Software iOS</strong> na <strong className="italic">WeFit</strong></p>
+            <p>Eu amo minha <em className="font-serif">noiva</em>! (Oi, mo)</p>
+            <p>Eu gosto de: criar coisas, conversar (literalmente adoro bater papo sobre qualquer coisa kkk), cozinhar/comer e fitness.</p>
+            <p>
+              Ultimamente tenho brincado de <a href="https://medium.com/@rafabadaro.15" target="_blank" rel="noreferrer" className="underline underline-offset-4 text-on-surface hover:text-primary transition-colors">escrever</a> e <a href="https://www.youtube.com/channel/UCXEP5NLGHNxbS9-0HBPtSsw" target="_blank" rel="noreferrer" className="underline underline-offset-4 text-on-surface hover:text-primary transition-colors">editar vídeos</a>.
+            </p>
+            <p>Livro que tô lendo: <em className="mr-1">A Revolta de Atlas</em> de Ayn Rand</p>
+            <p>Espero que você tenha um ótimo dia/noite! (não faço ideia de onde você está agora)</p>
+            <p>Obrigado por visitar meu portfólio ;)</p>
+    </>
+  ),
+};
+
 const translations = {
   en: {
     linkedin: '💼 Where I look for jobs',
@@ -45,7 +76,7 @@ const translations = {
     seeMyApps: '📲 Veja meus apps!',
     tryToWrite: '🖋️ Onde eu escrevo',
     tryToEdit: '📹 Onde eu edito',
-    linksTitle: 'some interesting links',
+    linksTitle: 'alguns links interessantes',
   },
 };
 
@@ -136,16 +167,7 @@ function App() {
             </AnimatePresence>
           </div>
           <div className="text-on-surface-variant text-base md:text-xl max-w-2xl space-y-4">
-            <p>Nice to meet you!<br />My name is Rafael, but you can call me <em>Rafa, Badaró, Bada</em> (i have a lot of nicknames lol)</p>
-            <p>Currently working as an <strong className="italic mr-1">iOS Software Engineer</strong> for <strong className="italic">WeFit</strong></p>
-            <p>I love my <em className="font-serif">fiancé</em>! (Shoutout mo)</p>
-            <p>I like: creating things, chatting (literally I talk about anything lol), cooking/eating and fitness.</p>
-            <p>
-              Lately been getting into <a href="https://medium.com/@rafabadaro.15" target="_blank" rel="noreferrer" className="underline underline-offset-4 text-on-surface hover:text-primary transition-colors">writing</a> and <a href="https://www.youtube.com/channel/UCXEP5NLGHNxbS9-0HBPtSsw" target="_blank" rel="noreferrer" className="underline underline-offset-4 text-on-surface hover:text-primary transition-colors">editing</a>.
-            </p>
-            <p>Currently reading: <em className="mr-1">Atlas Shrugged</em> by Ayn Rand</p>
-            <p>Hope you have a great day/night! (I have no idea where you at right now)</p>
-            <p>Thank you for visiting my portfolio ;)</p>
+            {intro[lang]}
           </div>
         </section>
 

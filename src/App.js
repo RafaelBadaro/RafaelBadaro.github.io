@@ -115,6 +115,8 @@ const translations = {
     downloadCv: 'CV',
     appStore: 'App Store',
     seeMyApps: 'Check out my apps!',
+    tryToWrite: 'Medium',
+    tryToEdit: 'YouTube',
     stackTitle: 'Core Stack',
   },
   pt: {
@@ -131,6 +133,8 @@ const translations = {
     downloadCv: 'CV',
     appStore: 'App Store',
     seeMyApps: 'Veja meus apps!',
+    tryToWrite: 'Medium',
+    tryToEdit: 'YouTube',
     stackTitle: 'Stack Principal',
   },
 };
@@ -276,6 +280,18 @@ function App() {
               <a href="https://badaroapps.netlify.app/" target="_blank" rel="noreferrer" className="relative h-full w-full block p-6 md:p-7">
                 <img src="/appstore.png" alt="" className="absolute right-5 top-1/2 -translate-y-1/2 w-24 h-24 object-contain rounded-[22px] opacity-90 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="relative z-10 h-full flex items-center"><p className="text-2xl font-semibold pr-24">{t.seeMyApps}</p></div>
+              </a>
+            </BentoCard>
+            <BentoCard className="relative min-h-[120px] group !p-0" i={2}>
+              <a href="https://medium.com/@rafabadaro.15" target="_blank" rel="noreferrer" className="relative h-full w-full block p-6 md:p-7">
+                <img src="https://cdn-icons-png.flaticon.com/512/81/81661.png" alt="" className="absolute right-5 top-1/2 -translate-y-1/2 w-24 h-24 object-contain opacity-15 group-hover:opacity-30 transition-opacity duration-300" />
+                <div className="relative z-10 h-full flex items-center"><p className="text-2xl font-semibold">{t.tryToWrite}</p></div>
+              </a>
+            </BentoCard>
+            <BentoCard className="relative min-h-[120px] group !p-0" i={2}>
+              <a href="https://www.youtube.com/channel/UCXEP5NLGHNxbS9-0HBPtSsw" target="_blank" rel="noreferrer" className="relative h-full w-full block p-6 md:p-7">
+                <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="" className="absolute right-5 top-1/2 -translate-y-1/2 w-24 h-24 object-contain opacity-15 group-hover:opacity-30 transition-opacity duration-300" />
+                <div className="relative z-10 h-full flex items-center"><p className="text-2xl font-semibold">{t.tryToEdit}</p></div>
               </a>
             </BentoCard>
             <BentoCard className="relative min-h-[120px] group !p-0" i={2}>

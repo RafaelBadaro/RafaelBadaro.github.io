@@ -19,7 +19,7 @@ const SUPABASE_URL = 'https://wnpphrztoqdzukenzkyj.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InducHBocnp0b3FkenVrZW56a3lqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMzNjczNDUsImV4cCI6MjEwODk0MzM0NX0.AcLDslZzUixt8ZCZ1lRwL_Bafcrcw1qtWiyA610lfpM';
 const supabaseHeaders = { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}`, 'Content-Type': 'application/json' };
 const HIGH_FIVE_KEY = 'highFiveCount';
-const HIGH_FIVE_COOLDOWN_MS = 700;
+const HIGH_FIVE_COOLDOWN_MS = 1000;
 const CONFETTI_COLORS = ['#adc6ff', '#ff8fab', '#ffd166', '#06d6a0', '#c77dff'];
 const email = 'rafaelaraujobadaro@gmail.com';
 const greetings = ['Hello!', 'Olá!', 'こんにちは！', 'Hola!', 'Salut!'];
@@ -62,7 +62,7 @@ const translations = {
     gmail: '📧 My email',
     copied: 'Copied!',
     highFive: '✋ Tap to high five!',
-    highFiveCount: (n) => `${n} high ${n === 1 ? 'five' : 'fives'} so far`,
+    highFiveLabel: (n) => `high ${n === 1 ? 'five' : 'fives'} so far`,
     highFivesGiven: (n) => `you gave me ${n} high ${n === 1 ? 'five' : 'fives'}!`,
     highFiveMilestones: {
       5: 'wow!',
@@ -90,7 +90,7 @@ const translations = {
     gmail: '📧 Meu email',
     copied: 'Copiado!',
     highFive: '✋ Toque pra dar um high five!',
-    highFiveCount: (n) => `${n} high ${n === 1 ? 'five' : 'fives'} até agora`,
+    highFiveLabel: (n) => `high ${n === 1 ? 'five' : 'fives'} até agora`,
     highFivesGiven: (n) => `você me deu ${n} high ${n === 1 ? 'five' : 'fives'}!`,
     highFiveMilestones: {
       5: 'uau!',
@@ -151,9 +151,9 @@ function App() {
   const sendHighFive = async () => {
     if (cooldown) return;
     setCooldown(true);
-    const burst = Array.from({ length: 14 }, (_, i) => {
+    const burst = Array.from({ length: 80 }, (_, i) => {
       const angle = Math.random() * Math.PI * 2;
-      const distance = 50 + Math.random() * 60;
+      const distance = 100 + Math.random() * 180;
       return {
         id: `${Date.now()}-${i}`,
         x: Math.cos(angle) * distance,
@@ -262,12 +262,17 @@ function App() {
                   onClick={sendHighFive}
                   disabled={cooldown}
                   whileTap={{ scale: 0.93 }}
-                  className="relative px-6 py-3 rounded-full text-sm font-semibold border border-outline-variant/30 bg-surface-container-high text-on-surface hover:border-primary/40 transition-colors disabled:cursor-default"
+                  className="relative shrink-0 whitespace-nowrap px-6 py-3 rounded-full text-sm font-semibold border border-outline-variant/30 bg-surface-container-high text-on-surface hover:border-primary/40 transition-colors disabled:cursor-default"
                 >
                   <span className="relative">{t.highFive}</span>
                 </motion.button>
                 </div>
-                {highFives !== null && <span className="text-sm italic text-on-surface-variant">{t.highFiveCount(highFives)}</span>}
+                {highFives !== null && (
+                  <div className="flex flex-col leading-tight italic text-on-surface-variant">
+                    <span className="text-xl font-semibold tabular-nums">{highFives}</span>
+                    <span className="text-sm">{t.highFiveLabel(highFives)}</span>
+                  </div>
+                )}
               </div>
               {myHighFives > 0 && (
                 <p className="text-sm italic text-on-surface-variant">

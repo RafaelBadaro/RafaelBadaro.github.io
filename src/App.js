@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const fadeInVariants = {
@@ -18,7 +18,6 @@ const cardTransition = { duration: 0.35, ease: [0.22, 1, 0.36, 1] };
 const SUPABASE_URL = 'https://wnpphrztoqdzukenzkyj.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InducHBocnp0b3FkenVrZW56a3lqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMzNjczNDUsImV4cCI6MjEwODk0MzM0NX0.AcLDslZzUixt8ZCZ1lRwL_Bafcrcw1qtWiyA610lfpM';
 const supabaseHeaders = { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}`, 'Content-Type': 'application/json' };
-const HIGH_FIVE_KEY = 'highFiveCount';
 const HIGH_FIVE_COOLDOWN_MS = 1000;
 const CONFETTI_COLORS = ['#adc6ff', '#ff8fab', '#ffd166', '#06d6a0', '#c77dff'];
 const email = 'rafaelaraujobadaro@gmail.com';
@@ -134,10 +133,9 @@ function App() {
   const [copied, setCopied] = useState(false);
   const [highFives, setHighFives] = useState(null);
   const [cooldown, setCooldown] = useState(false);
+  const visitId = useRef(null);
   const [confetti, setConfetti] = useState([]);
-  const [myHighFives, setMyHighFives] = useState(() => {
-    try { return Number(localStorage.getItem(HIGH_FIVE_KEY)) || 0; } catch (e) { return 0; }
-  });
+  const [myHighFives, setMyHighFives] = useState(0);
   const t = translations[lang];
   const milestone = Object.keys(t.highFiveMilestones).map(Number).filter((n) => n <= myHighFives).pop();
 
@@ -145,6 +143,18 @@ function App() {
     fetch(`${SUPABASE_URL}/rest/v1/high_fives?select=count&id=eq.1`, { headers: supabaseHeaders })
       .then((res) => res.json())
       .then((rows) => setHighFives(Number(rows[0].count)))
+      .catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    const body = {
+      p_lang: lang,
+      p_device: window.matchMedia('(pointer: coarse)').matches ? 'mobile' : 'desktop',
+      p_timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || null,
+    };
+    fetch(`${SUPABASE_URL}/rest/v1/rpc/log_visit`, { method: 'POST', headers: supabaseHeaders, body: JSON.stringify(body) })
+      .then((res) => res.json())
+      .then((id) => { visitId.current = id; })
       .catch(() => {});
   }, []);
 
@@ -167,10 +177,12 @@ function App() {
     setTimeout(() => setCooldown(false), HIGH_FIVE_COOLDOWN_MS);
     const next = myHighFives + 1;
     setMyHighFives(next);
-    try { localStorage.setItem(HIGH_FIVE_KEY, String(next)); } catch (e) { /* ignore */ }
     try {
       const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/increment_high_five`, { method: 'POST', headers: supabaseHeaders });
       setHighFives(Number(await res.json()));
+      if (visitId.current) {
+        fetch(`${SUPABASE_URL}/rest/v1/rpc/add_visit_high_five`, { method: 'POST', headers: supabaseHeaders, body: JSON.stringify({ p_id: visitId.current }) }).catch(() => {});
+      }
     } catch (e) { /* ignore */ }
   };
 

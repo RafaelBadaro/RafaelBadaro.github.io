@@ -15,6 +15,12 @@ const fadeInVariants = {
 };
 
 const cardTransition = { duration: 0.35, ease: [0.22, 1, 0.36, 1] };
+const SUPABASE_URL = 'https://wnpphrztoqdzukenzkyj.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InducHBocnp0b3FkenVrZW56a3lqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMzNjczNDUsImV4cCI6MjEwODk0MzM0NX0.AcLDslZzUixt8ZCZ1lRwL_Bafcrcw1qtWiyA610lfpM';
+const supabaseHeaders = { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}`, 'Content-Type': 'application/json' };
+const HIGH_FIVE_KEY = 'highFiveCount';
+const HIGH_FIVE_COOLDOWN_MS = 700;
+const CONFETTI_COLORS = ['#adc6ff', '#ff8fab', '#ffd166', '#06d6a0', '#c77dff'];
 const email = 'rafaelaraujobadaro@gmail.com';
 const greetings = ['Hello!', 'Olá!', 'こんにちは！', 'Hola!', 'Salut!'];
 
@@ -55,6 +61,20 @@ const translations = {
     github: '👨‍💻 Where you can find my code',
     gmail: '📧 My email',
     copied: 'Copied!',
+    highFive: '✋ Tap to high five!',
+    highFiveCount: (n) => `${n} high ${n === 1 ? 'five' : 'fives'} so far`,
+    highFivesGiven: (n) => `you gave me ${n} high ${n === 1 ? 'five' : 'fives'}!`,
+    highFiveMilestones: {
+      5: 'wow!',
+      10: 'ok, my hand hurts',
+      20: 'dude what',
+      30: 'ok dude, you can stop now',
+      42: '42 huh',
+      67: 'really, six seven?',
+      69: 'really, six nine?',
+      80: 'you are curious huh',
+      100: 'wow 100, congrats, if you tapped this far please send me a message lol',
+    },
     gmailHint: 'click to copy my email',
     gmailHintAside: "(i hate the 'mailto' thingy)",
     downloadCv: 'CV',
@@ -69,6 +89,20 @@ const translations = {
     github: '👨‍💻 Onde você acha meu código',
     gmail: '📧 Meu email',
     copied: 'Copiado!',
+    highFive: '✋ Toque pra dar um high five!',
+    highFiveCount: (n) => `${n} high ${n === 1 ? 'five' : 'fives'} até agora`,
+    highFivesGiven: (n) => `você me deu ${n} high ${n === 1 ? 'five' : 'fives'}!`,
+    highFiveMilestones: {
+      5: 'uau!',
+      10: 'ok, minha mão tá doendo',
+      20: 'mano, quê',
+      30: 'ok, pode parar agora',
+      42: '42 hein',
+      67: 'sério, six seven?',
+      69: 'sério, meia nove?',
+      80: 'você tem muita curiosidade',
+      100: 'uau 100, parabéns, se você chegou até aqui me manda uma mensagem kkk',
+    },
     gmailHint: 'clique pra copiar meu email',
     gmailHintAside: "(odeio o 'mailto')",
     downloadCv: 'CV',
@@ -98,7 +132,47 @@ function App() {
   const [lang, setLang] = useState('en');
   const [greetingIndex, setGreetingIndex] = useState(0);
   const [copied, setCopied] = useState(false);
+  const [highFives, setHighFives] = useState(null);
+  const [cooldown, setCooldown] = useState(false);
+  const [confetti, setConfetti] = useState([]);
+  const [myHighFives, setMyHighFives] = useState(() => {
+    try { return Number(localStorage.getItem(HIGH_FIVE_KEY)) || 0; } catch (e) { return 0; }
+  });
   const t = translations[lang];
+  const milestone = Object.keys(t.highFiveMilestones).map(Number).filter((n) => n <= myHighFives).pop();
+
+  useEffect(() => {
+    fetch(`${SUPABASE_URL}/rest/v1/high_fives?select=count&id=eq.1`, { headers: supabaseHeaders })
+      .then((res) => res.json())
+      .then((rows) => setHighFives(Number(rows[0].count)))
+      .catch(() => {});
+  }, []);
+
+  const sendHighFive = async () => {
+    if (cooldown) return;
+    setCooldown(true);
+    const burst = Array.from({ length: 14 }, (_, i) => {
+      const angle = Math.random() * Math.PI * 2;
+      const distance = 50 + Math.random() * 60;
+      return {
+        id: `${Date.now()}-${i}`,
+        x: Math.cos(angle) * distance,
+        y: Math.sin(angle) * distance - 30,
+        rotate: Math.random() * 540 - 270,
+        color: CONFETTI_COLORS[i % CONFETTI_COLORS.length],
+      };
+    });
+    setConfetti(burst);
+    setTimeout(() => setConfetti([]), 1000);
+    setTimeout(() => setCooldown(false), HIGH_FIVE_COOLDOWN_MS);
+    const next = myHighFives + 1;
+    setMyHighFives(next);
+    try { localStorage.setItem(HIGH_FIVE_KEY, String(next)); } catch (e) { /* ignore */ }
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/increment_high_five`, { method: 'POST', headers: supabaseHeaders });
+      setHighFives(Number(await res.json()));
+    } catch (e) { /* ignore */ }
+  };
 
   const copyEmail = async () => {
     try {
@@ -168,6 +242,40 @@ function App() {
           </div>
           <div className="text-on-surface-variant text-base md:text-xl max-w-2xl space-y-4">
             {intro[lang]}
+            <div className="pt-2 space-y-3">
+              <div className="flex items-center gap-4">
+                <div className="relative">
+                  <div className="absolute inset-0 pointer-events-none">
+                    {confetti.map((c) => (
+                      <motion.span
+                        key={c.id}
+                        initial={{ x: 0, y: 0, opacity: 1, scale: 1, rotate: 0 }}
+                        animate={{ x: c.x, y: c.y + 40, opacity: 0, scale: 0.6, rotate: c.rotate }}
+                        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                        className="absolute left-1/2 top-1/2 w-2 h-3 rounded-[2px]"
+                        style={{ backgroundColor: c.color }}
+                      />
+                    ))}
+                  </div>
+                <motion.button
+                  type="button"
+                  onClick={sendHighFive}
+                  disabled={cooldown}
+                  whileTap={{ scale: 0.93 }}
+                  className="relative px-6 py-3 rounded-full text-sm font-semibold border border-outline-variant/30 bg-surface-container-high text-on-surface hover:border-primary/40 transition-colors disabled:cursor-default"
+                >
+                  <span className="relative">{t.highFive}</span>
+                </motion.button>
+                </div>
+                {highFives !== null && <span className="text-sm italic text-on-surface-variant">{t.highFiveCount(highFives)}</span>}
+              </div>
+              {myHighFives > 0 && (
+                <p className="text-sm italic text-on-surface-variant">
+                  {t.highFivesGiven(myHighFives)}
+                  {milestone && <><br /><strong>{t.highFiveMilestones[milestone]}</strong></>}
+                </p>
+              )}
+            </div>
           </div>
         </section>
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const fadeInVariants = {
@@ -15,117 +15,37 @@ const fadeInVariants = {
 };
 
 const cardTransition = { duration: 0.35, ease: [0.22, 1, 0.36, 1] };
+const email = 'rafaelaraujobadaro@gmail.com';
 const greetings = ['Hello!', 'Olá!', 'こんにちは！', 'Hola!', 'Salut!'];
-
-const experiences = [
-  {
-    title: {
-      en: 'WeFit/Porto Seguro 🇧🇷',
-      pt: 'WeFit/Porto Seguro 🇧🇷',
-    },
-    startDate: 'Jun 2025',
-    endDate: 'Present',
-    summary: {
-      en: 'Building features for the Porto Seguro app used by millions of insurance customers, focused on product delivery, reliability, and UX quality.',
-      pt: 'Desenvolvendo funcionalidades para o app Porto Seguro usado por milhoes de clientes de seguros, com foco em entrega, confiabilidade e qualidade de UX.',
-    },
-    tech: ['Swift', 'SwiftUI', 'UIKit'],
-    // Porto Seguro — institutional blue
-    gradient: [
-      'radial-gradient(ellipse at 15% 85%, #0d3b6e 0%, transparent 55%)',
-      'radial-gradient(ellipse at 80% 10%, #1a5fa8 0%, transparent 45%)',
-      'radial-gradient(ellipse at 55% 55%, #071e38 0%, transparent 70%)',
-      'linear-gradient(160deg, #05111f 0%, #0b2545 100%)',
-    ].join(', '),
-  },
-  {
-    title: {
-      en: 'Leal Apps 🇧🇷',
-      pt: 'Leal Apps 🇧🇷',
-    },
-    startDate: 'Oct 2024',
-     endDate: 'May 2025',
-    summary: {
-      en: 'Delivered high-impact features for: GymWP & PossoComer, including a real-time shared grocery list, crash fixes that reached 99.9% crash-free sessions and fixed a iCloud + watchOS sync bug.',
-      pt: 'Entreguei funcionalidades de alto impacto para: GymWP e PossoComer, incluindo lista compartilhada em tempo real, correcoes que levaram a 99.9% de sessoes sem crash e a correcao de um bug de sincronizacao entre iCloud + watchOS.',
-    },
-    tech: ['Swift', 'UIKit', 'Firebase'],
-    // Leal Apps — warm amber, fitness & food energy
-    gradient: [
-      'radial-gradient(ellipse at 10% 90%, #6b2d0f 0%, transparent 50%)',
-      'radial-gradient(ellipse at 75% 15%, #c45c1a 0%, transparent 45%)',
-      'radial-gradient(ellipse at 50% 50%, #3d1608 0%, transparent 65%)',
-      'linear-gradient(150deg, #1a0a03 0%, #3b1a08 100%)',
-    ].join(', '),
-  },
-  {
-    title: {
-      en: 'WEX 🇧🇷🇺🇸',
-      pt: 'WEX 🇧🇷🇺🇸',
-    },
-    startDate: 'Aug 2023',
-    endDate: 'Oct 2024',
-    summary: {
-      en: 'Worked on legacy decoupling initiatives and internal tools that accelerated engineering workflows in a multicultural team.',
-      pt: 'Atuei em iniciativas de desacoplamento de legado e em ferramentas internas que aceleraram o fluxo de engenharia em um time multicultural.',
-    },
-    tech: ['C#', '.NET', 'Microservices'],
-    // WEX — deep green, fintech
-    gradient: [
-      'radial-gradient(ellipse at 20% 80%, #0a3d20 0%, transparent 55%)',
-      'radial-gradient(ellipse at 70% 20%, #1a6b3a 0%, transparent 45%)',
-      'radial-gradient(ellipse at 50% 50%, #051a0e 0%, transparent 60%)',
-      'linear-gradient(155deg, #030f07 0%, #0c2e16 100%)',
-    ].join(', '),
-  },
-  {
-    title: {
-      en: 'Symplicity 🇧🇷🇺🇸🇨🇦',
-      pt: 'Symplicity 🇧🇷🇺🇸🇨🇦',
-    },
-    startDate: 'Sep 2022',
-    endDate: 'Jun 2023',
-    summary: {
-en: 'Delivered features and tests for the https://outcomecampusconnect.ca/ platform, "Canada\'s best resource for university and college students to find a job"',
-pt: 'Desenvolvi funcionalidades e testes para a plataforma https://outcomecampusconnect.ca/, "o melhor recurso do Canadá para estudantes universitários e de faculdades encontrarem emprego."',
-    },
-    tech: ['C#', '.NET', 'Testing'],
-    // Symplicity — indigo/purple, education
-    gradient: [
-      'radial-gradient(ellipse at 25% 75%, #2d1060 0%, transparent 50%)',
-      'radial-gradient(ellipse at 72% 18%, #5b2d9e 0%, transparent 45%)',
-      'radial-gradient(ellipse at 48% 52%, #150830 0%, transparent 65%)',
-      'linear-gradient(145deg, #0a0415 0%, #1e0d3d 100%)',
-    ].join(', '),
-  },
-];
 
 const translations = {
   en: {
-    aboutMeBody: "I like to work on apps that can cause a meaningful impact in people's lives. I care about quality, performance, clean code and UX/UI.",
-    linkedin: 'LinkedIn',
-    github: 'GitHub',
-    gmail: 'Gmail',
+    linkedin: '💼 Where I look for jobs',
+    github: '👨‍💻 Where you can find my code',
+    gmail: '📧 My email',
+    copied: 'Copied!',
+    gmailHint: 'click to copy my email',
+    gmailHintAside: "(i hate the 'mailto' thingy)",
     downloadCv: 'CV',
     appStore: 'App Store',
-    seeMyApps: 'Check out my apps!',
-    tryToWrite: 'Medium',
-    tryToEdit: 'YouTube',
-    linksTitle: 'Links',
-    experiencesTitle: 'Professional experiences',
+    seeMyApps: '📲 Check out my apps!',
+    tryToWrite: '🖋️ Where I write',
+    tryToEdit: '📹 Where I edit',
+    linksTitle: 'some interesting links',
   },
   pt: {
-    aboutMeBody: 'Gosto de trabalhar em apps que possam causar um impacto positivo na vida das pessoas. Eu ligo para qualidade, performance, codigo limpo e UX/UI.',
-    linkedin: 'LinkedIn',
-    github: 'GitHub',
-    gmail: 'Gmail',
+    linkedin: '💼 Onde eu procuro emprego',
+    github: '👨‍💻 Onde você acha meu código',
+    gmail: '📧 Meu email',
+    copied: 'Copiado!',
+    gmailHint: 'clique pra copiar meu email',
+    gmailHintAside: "(odeio o 'mailto')",
     downloadCv: 'CV',
     appStore: 'App Store',
-    seeMyApps: 'Veja meus apps!',
-    tryToWrite: 'Medium',
-    tryToEdit: 'YouTube',
-    linksTitle: 'Links',
-    experiencesTitle: 'Experiências profissionais',
+    seeMyApps: '📲 Veja meus apps!',
+    tryToWrite: '🖋️ Onde eu escrevo',
+    tryToEdit: '📹 Onde eu edito',
+    linksTitle: 'some interesting links',
   },
 };
 
@@ -146,33 +66,17 @@ const BentoCard = ({ children, className = '', i = 0 }) => (
 function App() {
   const [lang, setLang] = useState('en');
   const [greetingIndex, setGreetingIndex] = useState(0);
-  const carouselRef = useRef(null);
+  const [copied, setCopied] = useState(false);
   const t = translations[lang];
-  const totalExperiences = experiences.length;
 
-  const getCurrentSlide = () => {
-    if (!carouselRef.current) return 0;
-    const { scrollLeft, clientWidth } = carouselRef.current;
-    if (!clientWidth) return 0;
-    return Math.round(scrollLeft / clientWidth);
-  };
-
-  const goToSlide = (index) => {
-    if (!carouselRef.current) return;
-    carouselRef.current.scrollTo({
-      left: index * carouselRef.current.clientWidth,
-      behavior: 'smooth',
-    });
-  };
-
-  const handleNext = () => {
-    const current = getCurrentSlide();
-    goToSlide(current >= totalExperiences - 1 ? 0 : current + 1);
-  };
-
-  const handlePrev = () => {
-    const current = getCurrentSlide();
-    goToSlide(current <= 0 ? totalExperiences - 1 : current - 1);
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (e) {
+      window.prompt('Copy:', email);
+    }
   };
 
   useEffect(() => {
@@ -183,7 +87,7 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-surface text-on-surface font-sans selection:bg-primary/30 antialiased">
+    <div className="min-h-screen overflow-x-hidden bg-surface text-on-surface font-sans selection:bg-primary/30 antialiased">
 
       {/* --- NAVBAR --- */}
       <nav className="fixed top-0 w-full z-50 bg-surface/75 backdrop-blur-xl border-b border-outline-variant/10">
@@ -231,7 +135,18 @@ function App() {
               </motion.h1>
             </AnimatePresence>
           </div>
-          <p className="text-on-surface-variant text-base md:text-xl max-w-2xl">{t.aboutMeBody}</p>
+          <div className="text-on-surface-variant text-base md:text-xl max-w-2xl space-y-4">
+            <p>Nice to meet you!<br />My name is Rafael, but you can call me <em>Rafa, Badaró, Bada</em> (i have a lot of nicknames lol)</p>
+            <p>Currently working as an <strong className="italic mr-1">iOS Software Engineer</strong> for <strong className="italic">WeFit</strong></p>
+            <p>I love my <em className="font-serif">fiancé</em>! (Shoutout mo)</p>
+            <p>I like: creating things, chatting (literally I talk about anything lol), cooking/eating and fitness.</p>
+            <p>
+              Lately been getting into <a href="https://medium.com/@rafabadaro.15" target="_blank" rel="noreferrer" className="underline underline-offset-4 text-on-surface hover:text-primary transition-colors">writing</a> and <a href="https://www.youtube.com/channel/UCXEP5NLGHNxbS9-0HBPtSsw" target="_blank" rel="noreferrer" className="underline underline-offset-4 text-on-surface hover:text-primary transition-colors">editing</a>.
+            </p>
+            <p>Currently reading: <em className="mr-1">Atlas Shrugged</em> by Ayn Rand</p>
+            <p>Hope you have a great day/night! (I have no idea where you at right now)</p>
+            <p>Thank you for visiting my portfolio ;)</p>
+          </div>
         </section>
 
         {/* SOCIAL */}
@@ -267,68 +182,20 @@ function App() {
             <BentoCard className="relative min-h-[120px] group !p-0" i={3}>
               <a href="https://github.com/RafaelBadaro" target="_blank" rel="noreferrer" className="relative h-full w-full block p-6 md:p-7">
                 <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="" className="absolute right-5 top-1/2 -translate-y-1/2 w-24 h-24 object-contain opacity-15 group-hover:opacity-30 transition-opacity duration-300" />
-                <div className="relative z-10 h-full flex items-center"><p className="text-2xl font-semibold">{t.github}</p></div>
+                <div className="relative z-10 h-full flex items-center"><p className="text-xl font-semibold pr-20">{t.github}</p></div>
               </a>
             </BentoCard>
 
-            <BentoCard className="relative min-h-[120px] group !p-0" i={4}>
-              <a href="mailto:rafaelaraujobadaro@gmail.com" className="relative h-full w-full block p-6 md:p-7">
+            <BentoCard className={`relative min-h-[120px] group !p-0 transition-colors duration-300 ${copied ? '!bg-emerald-500/15 !border-emerald-400/40' : ''}`} i={4}>
+              <button type="button" onClick={copyEmail} className="relative h-full w-full block p-6 md:p-7 text-left">
                 <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="" className="absolute right-5 top-1/2 -translate-y-1/2 w-24 h-24 object-contain opacity-15 group-hover:opacity-30 transition-opacity duration-300" />
-                <div className="relative z-10 h-full flex items-center"><p className="text-2xl font-semibold">{t.gmail}</p></div>
-              </a>
+                <div className="relative z-10 h-full flex flex-col justify-center">
+                  <p className="text-2xl font-semibold">{copied ? t.copied : t.gmail}</p>
+                  <p className="text-xs text-on-surface-variant mt-1">{t.gmailHint}<br />{t.gmailHintAside}</p>
+                </div>
+              </button>
             </BentoCard>
           </div>
-        </section>
-
-        {/* EXPERIENCIAS + STACK */}
-        <section id="projects" className="pt-6">
-          <h2 className="text-2xl md:text-3xl font-semibold italic tracking-tight mb-5">{t.experiencesTitle}</h2>
-          <BentoCard className="group relative !p-0 h-[420px]" i={2}>
-            <button type="button" onClick={handlePrev} className="absolute left-0 top-1/2 -translate-y-1/2 z-30 px-2 py-8 text-on-surface/80 text-3xl leading-none hover:text-on-surface transition-colors" aria-label="Previous">‹</button>
-            <button type="button" onClick={handleNext} className="absolute right-0 top-1/2 -translate-y-1/2 z-30 px-2 py-8 text-on-surface/80 text-3xl leading-none hover:text-on-surface transition-colors" aria-label="Next">›</button>
-
-            <div ref={carouselRef} className="overflow-x-auto h-full snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              <div className="flex h-full">
-                {experiences.map((experience) => (
-                  <article key={experience.title.en} className="relative min-w-full h-full snap-start overflow-hidden">
-
-                    {/* Mesh gradient */}
-                    <div
-                      className="absolute inset-0 w-full h-full"
-                      style={{ background: experience.gradient }}
-                    />
-
-                    {/* Grain texture overlay */}
-                    <div
-                      className="absolute inset-0 opacity-[0.045] mix-blend-overlay pointer-events-none"
-                      style={{
-                        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-                        backgroundSize: '128px 128px',
-                      }}
-                    />
-
-                    {/* Vignette */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent z-10" />
-
-                    <div className="absolute bottom-0 p-6 md:p-8 z-20 space-y-4 w-full">
-                      <div className="flex gap-2 flex-wrap">
-                        {experience.tech.map((tech) => (
-                          <span key={`${experience.title.en}-${tech}`} className="bg-white/10 backdrop-blur-md px-3 py-1 rounded-full text-[10px] uppercase tracking-wider font-semibold border border-white/10 text-on-surface">
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                      <h3 className="text-2xl md:text-3xl font-semibold">{experience.title[lang]}</h3>
-                      <p className="text-on-surface-variant text-sm md:text-base max-w-xl">{experience.summary[lang]}</p>
-                      <p className="text-[10px] uppercase tracking-[0.22em] text-on-surface-variant">
-                        {experience.startDate} - {experience.endDate}
-                      </p>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </div>
-          </BentoCard>
         </section>
       </main>
 
